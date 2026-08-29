@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Public APIs · Live Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔌</text></svg>">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="title-row">
+      <h1><span class="plug">🔌</span> Public APIs <span class="thin">Live Playground</span></h1>
+      <a class="repo-link" href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener">README source ↗</a>
+    </div>
+    <p class="sub">Every widget below calls a <strong>real API from this repo</strong>, straight from your browser.
+       No API keys, no backend, no proxy — only entries listed as <em>Auth: No</em> + <em>HTTPS: Yes</em> + <em>CORS: Yes</em>.</p>
+    <div class="stats">
+      <div class="stat"><b id="stat-total">1,706</b><span>APIs indexed in README</span></div>
+      <div class="stat"><b>797</b><span>need no auth at all</span></div>
+      <div class="stat"><b>312</b><span>browser-ready (HTTPS + CORS)</span></div>
+      <div class="stat"><b id="stat-widgets">0</b><span>wired up on this page</span></div>
+    </div>
+    <div class="toolbar">
+      <div id="filters" class="filters"></div>
+      <button id="run-all" class="btn primary">▶ Run every widget</button>
+      <button id="health" class="btn">🩺 Health check</button>
+    </div>
+    <div id="health-report" class="health-report" hidden></div>
+  </div>
+</header>
+
+<main id="grid" class="wrap grid"></main>
+
+<footer class="wrap foot">
+  <p>Built from <code>README.md</code> in this repository. Cards are pure client-side <code>fetch()</code> calls —
+     if one fails it's almost always the upstream API rate-limiting (CoinGecko is strict) or temporarily down, not your setup.</p>
+</footer>
+
+<template id="card-tpl">
+  <section class="card" hidden>
+    <div class="card-head">
+      <div>
+        <h2 class="card-title"></h2>
+        <p class="card-desc"></p>
+      </div>
+      <span class="cat-badge"></span>
+    </div>
+    <div class="controls"></div>
+    <div class="badges">
+      <span class="badge ok">no key</span>
+      <span class="badge ok">CORS</span>
+      <span class="badge ok">HTTPS</span>
+      <a class="badge link docs" target="_blank" rel="noopener">docs ↗</a>
+    </div>
+    <div class="output"><div class="placeholder">Press <b>Run</b> to call the API.</div></div>
+    <details class="raw">
+      <summary>Request &amp; raw JSON</summary>
+      <div class="req"></div>
+      <pre class="json"></pre>
+    </details>
+  </section>
+</template>
+
+<script src="widgets.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
