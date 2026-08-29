@@ -303,7 +303,7 @@
       
       let scale = Math.random() * 0.8 + 0.4;
       let rot = -45 + (Math.random() * 30 - 15);
-      heart.style.transform = \`scale(\${scale}) rotate(\${rot}deg)\`;
+      heart.style.transform = `scale(${scale}) rotate(${rot}deg)`;
       
       leavesArea.appendChild(heart);
     }
@@ -318,7 +318,7 @@
       
       heart.style.left = x + 'px';
       heart.style.top = y + 'px';
-      heart.style.animation = \`fall \${Math.random() * 2 + 3}s ease-in forwards\`;
+      heart.style.animation = `fall ${Math.random() * 2 + 3}s ease-in forwards`;
       
       leavesArea.appendChild(heart);
       
@@ -368,7 +368,7 @@
 
 
     // --- Typewriter Effect for Code Editor ---
-    const codeString = \`
+    const codeString = `
 <span class="comment">// You asked me to introduce myself.</span>
 <span class="comment">// Since I love coding, I made this for you.</span>
 
@@ -390,7 +390,7 @@
   }
 }
 
-<span class="func">startConversation</span>();\`;
+<span class="func">startConversation</span>();`;
 
     const codeContent = document.getElementById('code-content');
     let charIndex = 0;
