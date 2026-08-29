@@ -58,15 +58,16 @@ export function getForecast(lat, lon) {
   return getJSON(url, { ttl: 30 * 60 * 1000, source: 'Open-Meteo' });
 }
 
-/** Monthly climate normals for the trip month, derived from last year's reanalysis. */
-export function getClimate(lat, lon, month) {
+/**
+ * A full year of daily reanalysis in a single request. We derive both the
+ * selected month's climate and the 12-month "best time to visit" chart from
+ * this one payload rather than making twelve calls.
+ */
+export function getYearClimate(lat, lon) {
   const year = new Date().getFullYear() - 1;
-  const start = `${year}-${String(month).padStart(2, '0')}-01`;
-  const endDate = new Date(Date.UTC(year, month, 0));
-  const end = `${year}-${String(month).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`;
   const url =
     `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}` +
-    `&start_date=${start}&end_date=${end}` +
+    `&start_date=${year}-01-01&end_date=${year}-12-31` +
     `&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=auto`;
   return getJSON(url, { ttl: 30 * day, source: 'Open-Meteo Archive' });
 }

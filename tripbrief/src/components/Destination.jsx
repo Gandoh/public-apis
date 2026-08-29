@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { Card, Row, Stat, Skeleton, ErrBox, Ring } from './bits.jsx';
+import BestTime from './BestTime.jsx';
+import Packing from './Packing.jsx';
 import { osmEmbed } from '../api/sources.js';
 import {
   wmo, fmt, compact, temp, aqiBand, uvBand, comfortScore, scoreBand,
   MONTHS, localTime, tzOffsetLabel, tzDelta, timeOnly,
 } from '../lib/util.js';
 
-export default function Destination({ state, month, unit, homeCurrency, homeCountry }) {
+export default function Destination({ state, month, unit, homeCurrency, homeCountry, onPickMonth }) {
   const [amount, setAmount] = useState(100);
-  const { place, loading, forecast, climate, air, country, holidays, wiki, pois, health, rate, rateHistory, destCurrency, errors = {} } = state;
+  const { place, loading, forecast, climate, air, country, holidays, wiki, pois, health,
+    rate, rateHistory, destCurrency, scores, window: bestWin, errors = {} } = state;
 
   if (!place) return null;
 
@@ -78,8 +81,8 @@ export default function Destination({ state, month, unit, homeCurrency, homeCoun
       <Card title={`Conditions in ${MONTHS[month - 1]}`} source="Open-Meteo Archive" href="https://open-meteo.com/en/docs/historical-weather-api">
         {loading && !climate ? (
           <Skeleton lines={3} />
-        ) : errors.climate ? (
-          <ErrBox>{errors.climate}</ErrBox>
+        ) : errors.yearClimate ? (
+          <ErrBox>{errors.yearClimate}</ErrBox>
         ) : cs ? (
           <div className="score-row">
             <Ring value={cs.score} tone={band.tone} />
@@ -101,6 +104,12 @@ export default function Destination({ state, month, unit, homeCurrency, homeCoun
           <div className="tone-neutral" style={{ fontSize: 13 }}>No climate record for this location.</div>
         )}
       </Card>
+
+      {/* ---------------- best time to visit ---------------- */}
+      {!loading && <BestTime scores={scores} window={bestWin} month={month} onPickMonth={onPickMonth} />}
+
+      {/* ---------------- packing list ---------------- */}
+      {!loading && (climate || forecast) && <Packing state={state} month={month} homeCountry={homeCountry} />}
 
       {/* ---------------- weather now + 7 day ---------------- */}
       <Card title="Weather right now" source="Open-Meteo" href="https://open-meteo.com/">

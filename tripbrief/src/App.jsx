@@ -3,6 +3,8 @@ import SearchBox from './components/SearchBox.jsx';
 import Destination from './components/Destination.jsx';
 import Verdict from './components/Verdict.jsx';
 import InstallPrompt from './components/InstallPrompt.jsx';
+import SavedTrips from './components/SavedTrips.jsx';
+import { useSavedTrips } from './lib/useSavedTrips.js';
 import { useDestination } from './lib/useDestination.js';
 import { getMyLocation, getCountry, SOURCES } from './api/sources.js';
 import { MONTHS } from './lib/util.js';
@@ -52,6 +54,8 @@ export default function App() {
 
   const [stateA] = useDestination(a, month, homeCurrency);
   const [stateB] = useDestination(b, month, homeCurrency);
+  const { trips, save, remove, isSaved } = useSavedTrips();
+  const saved = a ? isSaved(a, b, month) : false;
 
   /* theme */
   useEffect(() => {
@@ -167,9 +171,26 @@ export default function App() {
               </select>
             </div>
             <button className="btn" onClick={swap} disabled={!a || !b} title="Swap A and B">⇄</button>
+            <button
+              className={`btn ${saved ? 'on' : ''}`}
+              onClick={() => (saved ? remove([a?.name, b?.name, month].join('|').toLowerCase()) : save(a, b, month))}
+              disabled={!a}
+              title={saved ? 'Remove from saved' : 'Save this trip'}
+            >
+              {saved ? '★' : '☆'}
+            </button>
             <button className="btn" onClick={share} disabled={!a} title="Copy shareable link">🔗</button>
           </div>
         </div>
+        <SavedTrips
+          trips={trips}
+          onRemove={remove}
+          onOpen={(t) => {
+            setA({ ...t.a, id: t.a.name, display: t.a.name });
+            setB(t.b ? { ...t.b, id: t.b.name, display: t.b.name } : null);
+            setMonth(t.month);
+          }}
+        />
         {detected && (
           <div style={{ fontSize: 11.5, color: 'var(--dim)', marginTop: 8 }}>
             Detected your location as {detected.city ? detected.city + ', ' : ''}
@@ -205,8 +226,8 @@ export default function App() {
         <>
           <Verdict a={stateA} b={stateB} month={month} unit={unit} />
           <main className="wrap compare">
-            <Destination state={stateA} month={month} unit={unit} homeCurrency={homeCurrency} homeCountry={homeCountry} />
-            <Destination state={stateB} month={month} unit={unit} homeCurrency={homeCurrency} homeCountry={homeCountry} />
+            <Destination state={stateA} month={month} unit={unit} homeCurrency={homeCurrency} homeCountry={homeCountry} onPickMonth={setMonth} />
+            <Destination state={stateB} month={month} unit={unit} homeCurrency={homeCurrency} homeCountry={homeCountry} onPickMonth={setMonth} />
           </main>
         </>
       )}

@@ -291,3 +291,46 @@ button { font: inherit; color: inherit; }
 @media (max-width: 480px) {
   .install-bar .ib-text span { display: none; }
 }
+
+/* ---------------- best time to visit ---------------- */
+.bt-lede { font-size: 14px; margin-bottom: 12px; }
+.bt-lede b { color: var(--a); }
+.bt-chart { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; align-items: end; }
+.bt-col {
+  background: none; border: 0; padding: 0; cursor: pointer; display: flex;
+  flex-direction: column; align-items: center; gap: 5px; border-radius: 8px 8px 4px 4px;
+}
+.bt-col:hover .bt-bar { filter: brightness(1.25); }
+.bt-bar-wrap { height: 84px; width: 100%; display: flex; align-items: flex-end; }
+.bt-bar { width: 100%; border-radius: 4px 4px 2px 2px; transition: height .5s ease; min-height: 3px; }
+.tone-bg-good { background: linear-gradient(180deg, var(--good), color-mix(in srgb, var(--good) 45%, transparent)); }
+.tone-bg-warn { background: linear-gradient(180deg, var(--warn), color-mix(in srgb, var(--warn) 45%, transparent)); }
+.tone-bg-bad { background: linear-gradient(180deg, var(--bad), color-mix(in srgb, var(--bad) 45%, transparent)); }
+.tone-bg-neutral { background: var(--line-2); }
+.bt-lbl { font-size: 9.5px; color: var(--dim); font-weight: 650; }
+.bt-col.sel .bt-lbl { color: var(--txt); }
+.bt-col.sel { background: color-mix(in srgb, var(--b) 16%, transparent); box-shadow: inset 0 0 0 1px var(--line-2); }
+.bt-foot { margin-top: 10px; font-size: 11.5px; }
+
+/* ---------------- packing list ---------------- */
+.pack { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.pack li { display: flex; gap: 11px; align-items: flex-start; }
+.pk-ico {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+  background: var(--panel-2); border: 1px solid var(--line); font-size: 15px;
+}
+.pk-body { display: flex; flex-direction: column; line-height: 1.4; min-width: 0; }
+.pk-body b { font-size: 13.5px; font-weight: 620; }
+.pk-body .muted { font-size: 11.5px; }
+
+/* ---------------- saved trips ---------------- */
+.saved { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.saved-lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--dim); font-weight: 700; }
+.saved-list { display: flex; gap: 6px; flex-wrap: wrap; }
+.saved-chip { display: inline-flex; align-items: stretch; background: var(--panel); border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+.saved-chip:hover { border-color: var(--b); }
+.saved-chip button { background: none; border: 0; cursor: pointer; font-size: 12.5px; padding: 5px 4px 5px 12px; color: var(--txt); }
+.saved-chip em { font-style: normal; color: var(--dim); font-size: 11px; }
+.saved-chip .x { padding: 5px 11px 5px 6px; color: var(--dim); font-size: 14px; }
+.saved-chip .x:hover { color: var(--bad); }
+.btn.on { border-color: var(--a); color: var(--a); }

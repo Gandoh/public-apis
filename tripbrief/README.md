@@ -18,6 +18,11 @@ Type two cities. Trip Brief fires ~10 APIs in parallel per destination and assem
 
 - **Comfort score** — a 0–100 heuristic for how pleasant your chosen travel month usually is,
   computed from last year's reanalysis data (temperature distance from 22 °C, plus a rain penalty).
+- **Best time to visit** — all twelve months scored and charted, with the sweet-spot window
+  called out. Click any month to re-run the whole comparison for it.
+- **Packing list** — generated from the actual forecast and climate, with the reason attached
+  to each item ("rain on 60% of days", "18 °C swing between day and night").
+- **Saved trips** — star a comparison and it's one tap away next time.
 - **Head-to-head verdict** — which destination has better weather, is warmer, drier, has cleaner
   air, causes less jet lag, and how far apart they are.
 - **Live weather** — current conditions plus a 7-day forecast with precipitation probability,
@@ -56,12 +61,18 @@ src/
 ├── lib/
 │   ├── util.js         WMO weather codes, unit conversion, comfort scoring,
 │   │                   timezone maths, formatters
+│   ├── insights.js     month slicing, 12-month scores, best window, packing
+│   ├── useSavedTrips.js  localStorage-backed saved comparisons
 │   └── useDestination.js  loads a full dossier in parallel; stale-response
 │                          guard via a request-id ref
 ├── components/
 │   ├── SearchBox.jsx   debounced autocomplete with keyboard navigation
-│   ├── Destination.jsx one destination column (8 cards)
+│   ├── Destination.jsx one destination column (10 cards)
+│   ├── BestTime.jsx    twelve-month comfort chart, click to change month
+│   ├── Packing.jsx     forecast-derived packing list
 │   ├── Verdict.jsx     head-to-head comparison strip
+│   ├── SavedTrips.jsx  starred comparisons
+│   ├── InstallPrompt.jsx  PWA install banner
 │   └── bits.jsx        Card, Row, Stat, Ring, Skeleton, ErrBox
 └── App.jsx             shell, URL state, theme, preferences
 ```
@@ -75,7 +86,16 @@ country profiles, 30 minutes for forecasts. Re-comparing destinations is instant
 re-hit the upstream services.
 
 **Shareable state.** The current comparison lives in the URL (`?a=…&b=…&m=8&c=USD&u=C`), so any
-brief can be copied and sent. Theme, units and currency persist in `localStorage`.
+brief can be copied and sent. Theme, units, currency and saved trips persist in `localStorage`.
+
+**Efficient by design.** One request fetches a full year of daily climate data; the selected
+month and the twelve-month chart are both derived from it locally. Changing the travel month
+re-slices cached data instead of hitting the network.
+
+**Installable.** Ships as a PWA — web app manifest, service worker with offline support,
+maskable icons — which is also what makes the Google Play path possible.
+See [`LAUNCH.md`](./LAUNCH.md) for the step-by-step publishing checklist and
+[`PUBLISHING.md`](./PUBLISHING.md) for the full reference.
 
 ## Notes and limits
 
