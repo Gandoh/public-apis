@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nice to meet you!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            font-weight: 300;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #feb47b;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: #feb47b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: #e5e7eb;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .interactive {
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #111;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+            outline: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 126, 95, 0.6);
+        }
+
+        #secret-message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #feb47b;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; }
+            .container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Hi, I'm Gandoh Bah 👋</h1>
+            <p>A little about me, curated just for you.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="card">
+                <h3>✨ Who I am</h3>
+                <p>I'm a student with a huge passion for coding, solving problems, and building cool things from scratch. I believe in balancing my ambition with making time to enjoy the little things in life.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 What I love</h3>
+                <p>When I'm not busy writing code or debugging, you can usually find me exploring new tech trends, discovering great music, or getting lost in a good book. I'm always up for a genuine conversation about life, our goals, or whatever is on your mind.</p>
+            </div>
+            
+            <div class="card">
+                <h3>💡 Why I made this</h3>
+                <p>You asked me to introduce myself, and I wanted to step it up from a standard text message. I figured using my coding skills to create something interactive would be a fun and creative way to give you a glimpse into who I am!</p>
+            </div>
+        </div>
+
+        <div class="interactive">
+            <button class="btn" onclick="revealMessage()">Click for a fun fact</button>
+            <div id="secret-message">"I might be great at talking to computers, but I am genuinely even more excited to get to know you better! 😊"</div>
+        </div>
+    </div>
+
+    <script>
+        function revealMessage() {
+            const msg = document.getElementById('secret-message');
+            const btn = document.querySelector('.btn');
+            
+            if (msg.style.display === 'none' || msg.style.display === '') {
+                msg.style.display = 'block';
+                btn.textContent = 'Hide fun fact';
+                setTimeout(() => {
+                    msg.style.opacity = '1';
+                }, 50);
+            } else {
+                msg.style.opacity = '0';
+                btn.textContent = 'Click for a fun fact';
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 500);
+            }
+        }
+    </script>
+
+</body>
+</html>
