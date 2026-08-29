@@ -1,0 +1,88 @@
+name: Deploy Trip Brief
+
+# Publishes the tripbrief/ web app to GitHub Pages.
+#
+# INSTALL THIS FILE (it cannot be committed by an app token, so it ships here
+# as a template):
+#
+#   mkdir -p .github/workflows
+#   cp tripbrief/deploy/github-pages.yml .github/workflows/
+#   git add .github/workflows/github-pages.yml
+#   git commit -m "Add GitHub Pages deploy workflow"
+#   git push
+#
+# Then, one-time, as the repo owner:
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+#
+# On a fork the site is served from a project subpath
+# (https://<user>.github.io/<repo>/), so BASE_PATH is set accordingly and the
+# build rewrites the manifest, service-worker scope and asset URLs to match.
+
+on:
+  push:
+    branches:
+      - arena/01a04e2c-public-apis
+    paths:
+      - 'tripbrief/**'
+      - '.github/workflows/deploy-tripbrief.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tripbrief
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: tripbrief/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        env:
+          # Project pages live under /<repo>/ — root deploys should use "/"
+          BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Verify PWA output
+        run: npm run check
+
+      - name: Add SPA fallback for deep links
+        # GitHub Pages has no rewrite rules; a copy of index.html as 404.html
+        # makes client-side routes and shared ?a=…&b=… links resolve.
+        run: cp dist/index.html dist/404.html
+
+      - name: Disable Jekyll
+        # Without this, GitHub Pages strips paths beginning with an underscore
+        # and can interfere with dotfile directories such as /.well-known/.
+        run: touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: tripbrief/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

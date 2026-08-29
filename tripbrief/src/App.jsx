@@ -250,7 +250,7 @@ export default function App() {
             not a forecast. Be kind to these free services.
           </p>
           <p style={{ margin: '10px 0 0' }}>
-            <a href="/privacy.html">Privacy policy</a> · No accounts, no analytics, no tracking.
+            <a href={`${import.meta.env.BASE_URL}privacy.html`}>Privacy policy</a> · No accounts, no analytics, no tracking.
           </p>
         </div>
       </footer>

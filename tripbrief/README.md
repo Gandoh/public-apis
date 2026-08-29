@@ -12,6 +12,9 @@ npm install
 npm run dev      # http://localhost:5173
 ```
 
+**Publishing?** [`DEPLOY-WEB.md`](./DEPLOY-WEB.md) gets the website live for free
+in ~10 minutes. [`LAUNCH.md`](./LAUNCH.md) then takes it to the Google Play Store.
+
 ## What it does
 
 Type two cities. Trip Brief fires ~10 APIs in parallel per destination and assembles a dossier:
@@ -94,8 +97,12 @@ re-slices cached data instead of hitting the network.
 
 **Installable.** Ships as a PWA — web app manifest, service worker with offline support,
 maskable icons — which is also what makes the Google Play path possible.
-See [`LAUNCH.md`](./LAUNCH.md) for the step-by-step publishing checklist and
-[`PUBLISHING.md`](./PUBLISHING.md) for the full reference.
+
+**Deploys to root or subpath.** `npm run build` targets a root origin;
+`BASE_PATH=/repo/ npm run build` rewrites asset URLs, manifest scope and
+service-worker scope for GitHub project pages. See
+[`DEPLOY-WEB.md`](./DEPLOY-WEB.md), then [`LAUNCH.md`](./LAUNCH.md) for the
+Play Store checklist and [`PUBLISHING.md`](./PUBLISHING.md) for full reference.
 
 ## Notes and limits
 

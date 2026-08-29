@@ -9,18 +9,26 @@
  *   - Navigations: fall back to the cached shell, then to /offline.html.
  */
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL = `tripbrief-shell-${VERSION}`;
 const DATA = `tripbrief-data-${VERSION}`;
 
+/**
+ * Derive the deploy base from the worker's own location, so the same file
+ * works at a root origin (/sw.js) and under a project subpath
+ * (/public-apis/sw.js) without being rebuilt.
+ */
+const BASE = self.location.pathname.replace(/sw\.js$/, '');
+const P = (p) => BASE + p.replace(/^\//, '');
+
 const SHELL_ASSETS = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/manifest.webmanifest',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/maskable-512.png',
+  P('/'),
+  P('/index.html'),
+  P('/offline.html'),
+  P('/manifest.webmanifest'),
+  P('/icons/icon-192.png'),
+  P('/icons/icon-512.png'),
+  P('/icons/maskable-512.png'),
 ];
 
 const API_HOSTS = [
@@ -69,10 +77,10 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then((res) => {
           const copy = res.clone();
-          caches.open(SHELL).then((c) => c.put('/index.html', copy));
+          caches.open(SHELL).then((c) => c.put(P('/index.html'), copy));
           return res;
         })
-        .catch(async () => (await caches.match('/index.html')) || caches.match('/offline.html'))
+        .catch(async () => (await caches.match(P('/index.html'))) || caches.match(P('/offline.html')))
     );
     return;
   }
