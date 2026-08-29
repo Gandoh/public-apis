@@ -15,6 +15,10 @@ npm run dev      # http://localhost:5173
 **Live at [tripbrief.netlify.app](https://tripbrief.netlify.app)** — deployed from
 this branch, rebuilds automatically on push.
 
+**Thinking about monetising?** Read
+[`MONETISATION.md`](./MONETISATION.md) first — Open-Meteo's free tier forbids
+advertising and subscriptions, so ads on the current stack would breach its terms.
+
 **Publishing?** [`DEPLOY-WEB.md`](./DEPLOY-WEB.md) gets the website live for free
 in ~10 minutes (or [`DEPLOY-FROM-PHONE.md`](./DEPLOY-FROM-PHONE.md) if you're on
 mobile). [`LAUNCH.md`](./LAUNCH.md) then takes it to the Google Play Store.
