@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi, I'm Gandoh</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* --- Top Visual Section --- */
+  .visual-section {
+    flex: 5.5; 
+    background: radial-gradient(circle at top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .tree-container {
+    position: absolute;
+    bottom: -10px;
+    width: 300px;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2;
+  }
+
+  .trunk {
+    width: 24px;
+    height: 120px;
+    background: #6e4428;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    box-shadow: inset -5px 0 10px rgba(0,0,0,0.2);
+  }
+  
+  .trunk::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: -25px;
+    width: 50px; height: 10px;
+    background: #6e4428;
+    transform: rotate(-45deg);
+    border-radius: 10px;
+  }
+
+  .trunk::before {
+    content: '';
+    position: absolute;
+    top: 50px; right: -25px;
+    width: 45px; height: 8px;
+    background: #6e4428;
+    transform: rotate(35deg);
+    border-radius: 10px;
+  }
+
+  /* The crown of hearts */
+  .leaves-area {
+    position: absolute;
+    bottom: 90px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .leaf-heart {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #ff2a55;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 5px rgba(255, 42, 85, 0.5);
+  }
+  .leaf-heart::before, .leaf-heart::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    background-color: #ff2a55;
+    border-radius: 50%;
+  }
+  .leaf-heart::before { top: -8px; left: 0; }
+  .leaf-heart::after { top: 0; left: 8px; }
+  
+  .leaf-heart.pink { background-color: #ff5c8a; }
+  .leaf-heart.pink::before, .leaf-heart.pink::after { background-color: #ff5c8a; }
+
+  .leaf-heart.light { background-color: #ff85a2; }
+  .leaf-heart.light::before, .leaf-heart.light::after { background-color: #ff85a2; }
+
+  @keyframes fall {
+    0% { transform: translate(0, 0) rotate(-45deg) scale(1); opacity: 1; }
+    100% { transform: translate(30px, 350px) rotate(15deg) scale(0.8); opacity: 0; }
+  }
+  
+  @keyframes floatUp {
+    0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+    20% { opacity: 0.6; }
+    100% { transform: translateY(-400px) scale(1.5); opacity: 0; }
+  }
+
+  /* Floating background hearts */
+  .bg-heart {
+    position: absolute;
+    width: 12px; height: 12px;
+    background-color: rgba(255, 100, 130, 0.3);
+    transform: rotate(-45deg);
+    animation: floatUp 8s linear infinite;
+    z-index: 1;
+  }
+  .bg-heart::before, .bg-heart::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    background-color: rgba(255, 100, 130, 0.3);
+    border-radius: 50%;
+  }
+  .bg-heart::before { top: -6px; left: 0; }
+  .bg-heart::after { top: 0; left: 6px; }
+
+  .top-text {
+    position: absolute;
+    top: 30px;
+    text-align: center;
+    z-index: 10;
+    color: #cc0033;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .top-text h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+  }
+  .top-text p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #a8002a;
+  }
+
+  /* --- Bottom Code Section --- */
+  .editor-section {
+    flex: 4.5; 
+    background-color: #0d0d0d;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    position: relative;
+    z-index: 20;
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+  }
+
+  .mac-window {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .mac-header {
+    height: 32px;
+    background-color: #252526;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+    border-bottom: 1px solid #000;
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .dot.red { background-color: #ff5f56; }
+  .dot.yellow { background-color: #ffbd2e; }
+  .dot.green { background-color: #27c93f; }
+
+  .header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #858585;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+  }
+
+  .code-content {
+    padding: 15px 20px;
+    color: #d4d4d4;
+    font-size: 0.95rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    line-height: 1.5;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: #fff;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* Syntax Highlighting */
+  .keyword { color: #c678dd; } /* const, class */
+  .variable { color: #e5c07b; } /* Gandoh */
+  .property { color: #e06c75; } /* name, loves */
+  .string { color: #98c379; } /* "string" */
+  .operator { color: #56b6c2; }
+  .comment { color: #7f848e; font-style: italic; }
+  .boolean { color: #d19a66; }
+  .func { color: #61afef; }
+
+  @media (max-width: 600px) {
+    .code-content { font-size: 0.8rem; padding: 12px 15px; }
+    .top-text h1 { font-size: 1.8rem; }
+    .top-text p { font-size: 0.95rem; }
+    .tree-container { transform: scale(0.85); bottom: -30px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="visual-section">
+    <div class="top-text">
+      <h1 id="title-text"></h1>
+      <p id="subtitle-text"></p>
+    </div>
+    
+    <div id="bg-hearts-container"></div>
+
+    <div class="tree-container">
+      <div class="leaves-area" id="leaves-area"></div>
+      <div class="trunk"></div>
+    </div>
+  </div>
+
+  <div class="editor-section">
+    <div class="mac-window">
+      <div class="mac-header">
+        <div class="dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <div class="header-title">introduce.js</div>
+      </div>
+      <div class="code-content" id="code-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // --- Generate Tree Hearts ---
+    const leavesArea = document.getElementById('leaves-area');
+    const colors = ['', 'pink', 'light'];
+    
+    // Create static hearts for the tree crown
+    for (let i = 0; i < 80; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'leaf-heart ' + colors[Math.floor(Math.random() * colors.length)];
+      
+      let angle = Math.random() * Math.PI * 2;
+      let radius = Math.random() * 120; 
+      let x = 130 + radius * Math.cos(angle) - 8;
+      let y = 130 + radius * Math.sin(angle) - 8;
+      
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      
+      let scale = Math.random() * 0.8 + 0.4;
+      let rot = -45 + (Math.random() * 30 - 15);
+      heart.style.transform = \`scale(\${scale}) rotate(\${rot}deg)\`;
+      
+      leavesArea.appendChild(heart);
+    }
+
+    // Create falling hearts occasionally
+    function createFallingLeaf() {
+      let heart = document.createElement('div');
+      heart.className = 'leaf-heart ' + colors[Math.floor(Math.random() * colors.length)];
+      
+      let x = 40 + Math.random() * 180;
+      let y = 60 + Math.random() * 80;
+      
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      heart.style.animation = \`fall \${Math.random() * 2 + 3}s ease-in forwards\`;
+      
+      leavesArea.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 4500);
+    }
+    setInterval(createFallingLeaf, 900);
+
+    // --- Generate Floating BG Hearts ---
+    const bgContainer = document.getElementById('bg-hearts-container');
+    function createBgHeart() {
+      let heart = document.createElement('div');
+      heart.className = 'bg-heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      bgContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createBgHeart, 1500);
+    for(let i=0; i<5; i++) createBgHeart(); // initial
+
+    // --- Typewriter Effect for Titles ---
+    const titleText = "For You ❤️";
+    const subtitleText = "Just a little intro...";
+    
+    function typeText(elementId, text, speed, callback) {
+      let i = 0;
+      let el = document.getElementById(elementId);
+      function type() {
+        if (i < text.length) {
+          el.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else if (callback) {
+          callback();
+        }
+      }
+      type();
+    }
+
+    setTimeout(() => {
+      typeText('title-text', titleText, 100, () => {
+        setTimeout(() => {
+          typeText('subtitle-text', subtitleText, 50);
+        }, 300);
+      });
+    }, 800);
+
+
+    // --- Typewriter Effect for Code Editor ---
+    const codeString = \`
+<span class="comment">// You asked me to introduce myself.</span>
+<span class="comment">// Since I love coding, I made this for you.</span>
+
+<span class="keyword">const</span> <span class="variable">Gandoh</span> <span class="operator">=</span> {
+  <span class="property">name</span>: <span class="string">"Gandoh Bah"</span>,
+  <span class="property">occupation</span>: <span class="string">"Student & Developer"</span>,
+  <span class="property">passions</span>: [
+    <span class="string">"Writing code"</span>,
+    <span class="string">"Building cool things"</span>,
+    <span class="string">"Making you smile 😉"</span>
+  ],
+  <span class="property">currentMission</span>: <span class="string">"Getting to know you better"</span>,
+  <span class="property">isExcited</span>: <span class="boolean">true</span>
+};
+
+<span class="keyword">function</span> <span class="func">startConversation</span>() {
+  <span class="keyword">if</span> (<span class="variable">Gandoh</span>.<span class="property">isExcited</span>) {
+    <span class="keyword">return</span> <span class="string">"I'd love to chat more. What do you say?"</span>;
+  }
+}
+
+<span class="func">startConversation</span>();\`;
+
+    const codeContent = document.getElementById('code-content');
+    let charIndex = 0;
+    let isHtmlTag = false;
+    let currentHtml = '';
+
+    function typeCode() {
+      if (charIndex < codeString.length) {
+        let char = codeString.charAt(charIndex);
+        currentHtml += char;
+        
+        if (char === '<') isHtmlTag = true;
+        if (char === '>') isHtmlTag = false;
+
+        codeContent.innerHTML = currentHtml.replace(/\\n/g, '<br>') + '<span class="cursor"></span>';
+        
+        // Auto-scroll to bottom as it types
+        codeContent.scrollTop = codeContent.scrollHeight;
+        
+        charIndex++;
+        
+        let delay = isHtmlTag ? 0 : (Math.random() * 30 + 10);
+        if (char === '\\n') delay = 350; // Pause at line breaks
+        if (char === '}') delay = 250;
+        
+        setTimeout(typeCode, delay);
+      } else {
+        codeContent.innerHTML = currentHtml.replace(/\\n/g, '<br>') + '<span class="cursor"></span>';
+      }
+    }
+
+    // Start typing code after 1.5 seconds
+    setTimeout(typeCode, 1500); 
+  </script>
+</body>
+</html>
