@@ -75,9 +75,11 @@ npx wrangler pages deploy dist --project-name trip-brief
 # GitHub Pages — see the caveat below
 ```
 
-**Custom domain strongly recommended.** Digital Asset Links verification is
-per-origin, so `tripbrief.app` is much easier to reason about than a shared
-`*.netlify.app` subdomain.
+**Origin root is what matters, not a custom domain.** Digital Asset Links must be
+served from the root of the origin with no redirect. A Netlify subdomain
+(`your-app.netlify.app`) is a valid origin root, so it works without buying a
+domain. What does *not* work is a project **subpath** like
+`user.github.io/repo/` — see the caveat below.
 
 > **GitHub Pages caveat:** project pages are served from a subpath
 > (`/repo-name/`). If you use one, set Vite's `base` to `'/repo-name/'` and
@@ -88,8 +90,13 @@ per-origin, so `tripbrief.app` is much easier to reason about than a shared
 Verify the deployment:
 
 ```bash
-npm run check https://your-domain.example
+npm run check https://your-site.netlify.app
 ```
+
+A `netlify.toml` is committed with the correct headers already: JSON content
+type and no-redirect handling for `/.well-known/assetlinks.json`, a
+non-cacheable service worker, `application/manifest+json` for the manifest, and
+immutable caching for hashed assets.
 
 ---
 
@@ -163,10 +170,12 @@ This is the step that makes it feel like a native app instead of a browser tab.
 Without it the TWA shows a Chrome address bar across the top.
 
 ```bash
-bubblewrap fingerprint generate-asset-links
+npm run assetlinks -- <GOOGLE_SHA256> <YOUR_UPLOAD_SHA256>
 ```
 
-That writes `assetlinks.json`. Deploy it to:
+That writes `public/.well-known/assetlinks.json`, validating the fingerprint
+format and reading `package_name` from `twa-manifest.json` so the two cannot
+drift. Rebuild and redeploy so it lands at:
 
 ```
 https://your-domain.example/.well-known/assetlinks.json

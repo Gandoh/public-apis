@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "node scripts/check-pwa.mjs"
+    "check": "node scripts/check-pwa.mjs",
+    "assetlinks": "node scripts/make-assetlinks.mjs"
   },
   "dependencies": {
     "react": "^18.3.1"

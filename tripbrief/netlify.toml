@@ -1,0 +1,70 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ---------------------------------------------------------------------------
+# Digital Asset Links — the file that removes the URL bar from the TWA.
+# Android fetches this over HTTPS and will NOT follow redirects, so it must be
+# served directly at this exact path with a JSON content type.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/.well-known/assetlinks.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=300"
+    Access-Control-Allow-Origin = "*"
+
+# ---------------------------------------------------------------------------
+# Service worker must never be served stale, or users get pinned to an old
+# build forever. The SW itself handles caching of everything else.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Vite emits content-hashed filenames, so these are safe to cache forever.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ---------------------------------------------------------------------------
+# Baseline security headers. Note: no X-Frame-Options DENY — that would break
+# the OpenStreetMap iframe embed the app uses for maps.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+
+# ---------------------------------------------------------------------------
+# SPA fallback. Netlify serves real files first, so /privacy.html,
+# /offline.html and /.well-known/* are unaffected by this catch-all.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

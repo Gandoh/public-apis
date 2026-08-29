@@ -8,46 +8,67 @@ half a day of that is actual work — the rest is Google's mandatory waiting.
 
 ---
 
-## Before you start — decisions only you can make
+## Decisions — already made for you
 
-| Decision | Why it matters | Recommendation |
+| Decision | Choice | Why |
 |:--|:--|:--|
-| **Account type** | Personal accounts need 12 testers for 14 days. Organization accounts skip that entirely but need a D-U-N-S number (up to 30 days) and a real legal entity. | **Personal**, unless you already have a registered business |
-| **Domain** | Asset Links verification is per-origin. A custom domain is cleaner and portable. | Buy one (~$10/yr), e.g. `tripbrief.app` |
-| **Package ID** | **Permanent.** Can never be changed after first publish. | `app.tripbrief.twa` (pre-set) — change only if you own a different domain |
-| **App name** | Must be unique-ish on Play. | Check it's not taken before you commit |
+| **Host** | **Netlify** | Gives you a real subdomain (`your-app.netlify.app`), not a subpath. Digital Asset Links must live at a domain **root** with no redirects, so subpath hosts like GitHub Pages project sites break the TWA. Free tier, HTTPS included, `netlify.toml` already committed. |
+| **Domain** | **Skip it for now** | `*.netlify.app` is a valid origin root, so Asset Links work without buying anything. Total launch cost: just Google's $25. Add a custom domain later if you want — redeploy and regenerate one file. |
+| **Account type** | **Personal** | Organization skips the 12-tester rule but needs a D-U-N-S number (up to 30 days) and a registered legal entity. Not worth it unless you already have a company. |
+| **Package ID** | `app.tripbrief.twa` | **Permanent — can never be changed after first publish.** Already set in `twa-manifest.json`. |
+
+> **One thing to check yourself:** search Play for "Trip Brief" and make sure the
+> name isn't taken by something prominent. If it is, change `name` in
+> `public/manifest.webmanifest` and `twa-manifest.json` before Phase 3.
 
 ---
 
-## Phase 1 — Deploy the website (≈30 min)
+## Phase 1 — Deploy to Netlify (≈20 min)
 
 The Android app is a thin shell around your live site, so the site goes first.
 
-- [ ] **1.1** Pick a host. Netlify and Cloudflare Pages both have free tiers with HTTPS.
-- [ ] **1.2** Build and deploy:
+- [ ] **1.1** Create a free account at [netlify.com](https://netlify.com) (sign in with GitHub).
+- [ ] **1.2** Deploy from your machine:
       ```bash
       cd tripbrief
       npm install
       npm run build
       npx netlify-cli deploy --prod --dir=dist
       ```
-- [ ] **1.3** Point your custom domain at it (your host's dashboard → Domains).
-- [ ] **1.4** Confirm HTTPS works and the padlock is green.
-- [ ] **1.5** Validate the live site:
-      ```bash
-      npm run check https://your-domain.example
-      ```
-      Everything must pass except `assetlinks.json` — that comes in Phase 3.
-- [ ] **1.6** Open the site on your **phone**, use it for a few minutes.
-      Search two cities, change the month, save a trip. Fix anything that feels off.
-- [ ] **1.7** In desktop Chrome DevTools → Application, confirm:
-      Manifest has no errors, Service Worker is "activated and running",
-      and an install icon appears in the address bar.
+      First run opens a browser to authorise, then asks to link or create a site —
+      choose **create a new site**. It prints your live URL when it finishes.
 
-> ⚠️ **If you use GitHub Pages on a project subpath** (`user.github.io/repo/`),
-> set `base: '/repo/'` in `vite.config.js` and update `start_url` and `scope`
-> in `manifest.webmanifest` to match — otherwise the service worker scope and
-> the TWA will not line up. A custom domain avoids this entirely.
+      <details>
+      <summary>Prefer continuous deploys from GitHub?</summary>
+
+      In Netlify: **Add new site → Import an existing project → GitHub →**
+      pick this repo. Then set **Base directory** to `tripbrief`. The committed
+      `netlify.toml` supplies the build command and publish directory. Every push
+      to your branch then redeploys automatically.
+      </details>
+
+- [ ] **1.3** Rename the site to something memorable:
+      **Site configuration → Change site name** → e.g. `tripbrief`
+      → your URL becomes `https://tripbrief.netlify.app`.
+- [ ] **1.4** **Write your final URL down.** Phases 3 and 5 both need it verbatim.
+- [ ] **1.5** Validate the deployment:
+      ```bash
+      npm run check https://your-site.netlify.app
+      ```
+      Everything should pass except `assetlinks.json` — that arrives in Phase 5.
+- [ ] **1.6** Confirm the critical headers landed (`netlify.toml` sets these):
+      ```bash
+      curl -sI https://your-site.netlify.app/manifest.webmanifest | grep -i content-type
+      # expect: application/manifest+json
+      curl -sI https://your-site.netlify.app/sw.js | grep -i cache-control
+      # expect: max-age=0, must-revalidate
+      ```
+- [ ] **1.7** Open the site on your **phone** and actually use it. Search two
+      cities, tap a month on the "Best time to visit" chart, star a trip.
+      Chrome should offer **Add to Home screen**.
+- [ ] **1.8** In desktop Chrome DevTools → **Application**, confirm:
+      Manifest shows no errors, Service Worker is "activated and running",
+      and an install icon appears in the address bar.
 
 ---
 
@@ -68,11 +89,12 @@ Needs **JDK 17+** and the Android SDK. Bubblewrap will offer to install both.
       ```bash
       npm install -g @bubblewrap/cli
       ```
-- [ ] **3.2** Edit `twa-manifest.json` — replace all three occurrences of
-      `REPLACE_WITH_YOUR_DOMAIN` with your real domain.
+- [ ] **3.2** Edit `twa-manifest.json` — replace all five occurrences of
+      `REPLACE_WITH_YOUR_DOMAIN` with your Netlify host, **hostname only, no
+      `https://` and no trailing slash** (e.g. `tripbrief.netlify.app`).
 - [ ] **3.3** Initialise:
       ```bash
-      bubblewrap init --manifest https://your-domain.example/manifest.webmanifest
+      bubblewrap init --manifest https://your-site.netlify.app/manifest.webmanifest
       ```
 - [ ] **3.4** 🔴 **Re-open `twa-manifest.json` and confirm `targetSdkVersion` is still `36`.**
       Bubblewrap's template defaults to 35, and **Play rejects anything below 36
@@ -103,7 +125,7 @@ Ready-made assets in `assets/`:
 - [ ] **4.2** Feature graphic → `assets/play-feature-graphic-1024x500.png` (1024×500) ✅
 - [ ] **4.3** Short description (80 char limit) — copy from `PUBLISHING.md` ✅
 - [ ] **4.4** Full description — copy from `PUBLISHING.md` ✅
-- [ ] **4.5** Privacy policy URL → `https://your-domain.example/privacy.html` ✅
+- [ ] **4.5** Privacy policy URL → `https://your-site.netlify.app/privacy.html` ✅
 - [ ] **4.6** **Screenshots — you must make these.** 2–8 phone shots required.
       Easiest route: open the site on your phone, compare two interesting cities,
       and capture:
@@ -130,37 +152,41 @@ Then the compliance forms:
 
 ## Phase 5 — Digital Asset Links (≈20 min) — removes the URL bar
 
-This is the step that makes it feel native instead of a browser tab.
+This is the step that makes it feel native instead of a browser tab. Android
+fetches this file over HTTPS and **will not follow redirects**, which is exactly
+why we chose a root-domain host.
 
-- [ ] **5.1** Upload the `.aab` to a **Closed testing** track first (Phase 6.1),
-      because Play App Signing generates the fingerprint that actually matters.
-- [ ] **5.2** In Play Console → **Test and release → Setup → App signing**,
-      copy the **SHA-256 certificate fingerprint**.
-- [ ] **5.3** Generate the file:
+- [ ] **5.1** Upload the `.aab` to a **Closed testing** track first (Phase 6.1) and
+      opt into **Play App Signing** when offered. Google then generates the
+      fingerprint that actually matters.
+- [ ] **5.2** Collect **both** fingerprints:
+      - **Google's**: Play Console → **Test and release → Setup → App signing**
+        → *SHA-256 certificate fingerprint*
+      - **Yours**: `bubblewrap fingerprint list`
+- [ ] **5.3** Generate the file (validates format, reads your package id automatically):
       ```bash
-      bubblewrap fingerprint generate-asset-links
+      npm run assetlinks -- <GOOGLE_SHA256> <YOUR_UPLOAD_SHA256>
       ```
-- [ ] **5.4** Edit it to include **both** fingerprints (your upload key *and*
-      Google's signing key). Listing both is valid and safest:
-      ```json
-      [{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target": {
-          "namespace": "android_app",
-          "package_name": "app.tripbrief.twa",
-          "sha256_cert_fingerprints": ["AA:BB:...upload", "11:22:...google"]
-        }
-      }]
-      ```
-- [ ] **5.5** Save it to `public/.well-known/assetlinks.json`, then rebuild and
-      redeploy (Vite copies `public/` verbatim into `dist/`).
-- [ ] **5.6** Verify:
+      Writes `public/.well-known/assetlinks.json` with both fingerprints — the
+      safest setup, since sideloaded and Play-distributed builds will both verify.
+- [ ] **5.4** Rebuild and redeploy:
       ```bash
-      npm run check https://your-domain.example
+      npm run build && npx netlify-cli deploy --prod --dir=dist
       ```
-      and cross-check with Google's own validator:
-      `https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://your-domain.example&relation=delegate_permission/common.handle_all_urls`
-- [ ] **5.7** Reinstall the APK — **the URL bar should now be gone.**
+- [ ] **5.5** Confirm it is served directly, as JSON, with **no redirect**:
+      ```bash
+      curl -sI https://your-site.netlify.app/.well-known/assetlinks.json
+      # expect: HTTP/2 200  and  content-type: application/json
+      ```
+      A `301`/`302` here means the TWA will fail — `netlify.toml` is configured
+      to prevent that.
+- [ ] **5.6** Verify with Google's own validator:
+      ```
+      https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://your-site.netlify.app&relation=delegate_permission/common.handle_all_urls
+      ```
+      You want `"maxAge"` and your statement echoed back, with no error.
+- [ ] **5.7** Reinstall the app on your phone — **the URL bar should now be gone.**
+      If it persists, wait a few minutes (Google caches this) and reinstall.
 
 ---
 
