@@ -1,3 +1,14 @@
 node_modules/
 dist/
 .vite/
+
+# Android / TWA build artefacts — NEVER commit signing keys
+android.keystore
+*.keystore
+*.jks
+app-release-bundle.aab
+app-release-signed.apk
+/app/
+/store_icon.png
+twa-manifest.json.bak
+.gradle/

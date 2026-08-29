@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import SearchBox from './components/SearchBox.jsx';
 import Destination from './components/Destination.jsx';
 import Verdict from './components/Verdict.jsx';
+import InstallPrompt from './components/InstallPrompt.jsx';
 import { useDestination } from './lib/useDestination.js';
 import { getMyLocation, getCountry, SOURCES } from './api/sources.js';
 import { MONTHS } from './lib/util.js';
@@ -56,6 +57,9 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('tb:theme', theme);
+    // Keep the Android/TWA system bar in sync with the app theme.
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#070b16' : '#f4f6fc');
   }, [theme]);
 
   useEffect(() => localStorage.setItem('tb:cur', homeCurrency), [homeCurrency]);
@@ -224,8 +228,13 @@ export default function App() {
             browser with no backend and no keys. Comfort scores are a heuristic over last year's reanalysis data,
             not a forecast. Be kind to these free services.
           </p>
+          <p style={{ margin: '10px 0 0' }}>
+            <a href="/privacy.html">Privacy policy</a> · No accounts, no analytics, no tracking.
+          </p>
         </div>
       </footer>
+
+      <InstallPrompt />
     </div>
   );
 }

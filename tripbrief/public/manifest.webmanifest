@@ -1,0 +1,34 @@
+{
+  "name": "Trip Brief — Compare Destinations",
+  "short_name": "Trip Brief",
+  "description": "Compare any two travel destinations side by side: weather for your travel month, exchange rates, public holidays, air quality, landmarks and country essentials.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070b16",
+  "theme_color": "#070b16",
+  "categories": ["travel", "utilities", "weather"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Lisbon vs Barcelona",
+      "short_name": "Iberia",
+      "url": "/?a=Lisbon~38.7071~-9.1355~PT~Portugal&b=Barcelona~41.3874~2.1686~ES~Spain"
+    },
+    {
+      "name": "Freetown vs Accra",
+      "short_name": "West Africa",
+      "url": "/?a=Freetown~8.4844~-13.2344~SL~Sierra%20Leone&b=Accra~5.6037~-0.1870~GH~Ghana"
+    }
+  ]
+}

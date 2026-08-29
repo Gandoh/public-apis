@@ -32,3 +32,13 @@ createRoot(document.getElementById('root')).render(
     </Boundary>
   </React.StrictMode>
 );
+
+// Register the service worker (required for an installable PWA / Play Store TWA).
+// Only in production builds — it would fight Vite's dev HMR otherwise.
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      /* non-fatal: the app works fine without offline support */
+    });
+  });
+}

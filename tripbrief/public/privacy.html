@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · Trip Brief</title>
+<style>
+  body { margin:0; background:#070b16; color:#eaf0ff; padding:40px 20px;
+         font:16px/1.7 ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:28px; letter-spacing:-.6px; margin:0 0 6px; }
+  .sub { color:#8e9bc4; font-size:14px; margin-bottom:32px; }
+  h2 { font-size:17px; margin:30px 0 8px; }
+  p, li { color:#c6d0f5; font-size:14.5px; }
+  ul { padding-left:20px; }
+  a { color:#7C9CFF; }
+  code { background:#0d1330; padding:2px 6px; border-radius:5px; font-size:13px; }
+  .box { background:#0f1526; border:1px solid #202a45; border-radius:12px; padding:16px 18px; margin:20px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="sub">Trip Brief · Last updated 29 August 2026</p>
+
+  <div class="box">
+    <strong>Summary:</strong> Trip Brief has no user accounts, no analytics, no advertising and no
+    backend server. It does not collect, store or transmit personal information about you to us,
+    because there is no “us” server to send it to.
+  </div>
+
+  <h2>What data the app handles</h2>
+  <p>Trip Brief runs entirely in your browser (or, on Android, inside a Trusted Web Activity that
+     renders the same web app). It has no server component of its own.</p>
+  <ul>
+    <li><strong>Search terms.</strong> City names you type are sent to the OpenStreetMap Nominatim
+        geocoding service to resolve coordinates.</li>
+    <li><strong>Coordinates.</strong> The coordinates of destinations you select are sent to the
+        weather, air quality and encyclopedia services listed below.</li>
+    <li><strong>Your approximate location.</strong> On first load the app calls GeoJS, which returns
+        an approximate country based on your IP address. This is used only to pick a sensible
+        default currency and to flag driving-side differences. It is never stored or transmitted
+        anywhere else.</li>
+  </ul>
+
+  <h2>What is stored on your device</h2>
+  <ul>
+    <li><code>localStorage</code> — your theme, temperature unit and preferred currency.</li>
+    <li><code>sessionStorage</code> — a short-lived cache of API responses so the app does not
+        repeatedly call free public services. Cleared when you close the tab.</li>
+    <li>A service worker cache holding the app's own files and recently viewed destination data,
+        so it works offline.</li>
+  </ul>
+  <p>All of this stays on your device. Clearing your browser data or uninstalling the app removes it.</p>
+
+  <h2>Third-party services</h2>
+  <p>Fetching data necessarily discloses your IP address and the request itself to these providers,
+     each of which has its own privacy policy:</p>
+  <ul>
+    <li><a href="https://operations.osmfoundation.org/policies/nominatim/">OpenStreetMap Nominatim</a> — place search and map tiles</li>
+    <li><a href="https://open-meteo.com/en/terms">Open-Meteo</a> — weather, historical climate, air quality</li>
+    <li><a href="https://restcountries.com">REST Countries</a> — country profiles</li>
+    <li><a href="https://www.frankfurter.app">Frankfurter</a> — exchange rates</li>
+    <li><a href="https://date.nager.at">Nager.Date</a> — public holidays</li>
+    <li><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia / Wikipedia</a> — summaries and landmarks</li>
+    <li><a href="https://disease.sh/">Open Disease</a> — public health statistics</li>
+    <li><a href="https://www.geojs.io/">GeoJS</a> — approximate country from IP</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>Trip Brief is a general-audience travel reference tool. It does not knowingly collect any
+     information from anyone, including children.</p>
+
+  <h2>Changes</h2>
+  <p>Any change to this policy will be published at this URL with an updated date.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy can be raised as an issue on the project's source repository.</p>
+
+  <p style="margin-top:36px"><a href="/">← Back to Trip Brief</a></p>
+</main>
+</body>
+</html>
