@@ -43,12 +43,21 @@ The Nominatim usage policy lists under **Unacceptable Use**:
 auto-complete, and it is explicitly forbidden — the stated penalty is a ban.
 The debounce reduces load but does not make it permitted.
 
-**This should be fixed whether or not you monetise.** Two options:
+### ✅ Fixed — 29 Aug 2026
 
-| Fix | Cost | UX impact |
-|:--|:--|:--|
-| Search on Enter / button press only | Free | Slightly more deliberate; a tap instead of automatic |
-| Switch to a geocoder that permits autocomplete | Free tier available | None |
+`SearchBox.jsx` no longer issues any request from the input's `onChange`
+handler. A Nominatim call happens only on an explicit user submit: pressing
+Enter, or activating the 🔍 button. Also added:
+
+- an identical-term guard, so resubmitting the same query does not re-hit the
+  network (the policy warns that repeated identical queries may be blocked);
+- visible OpenStreetMap / Nominatim attribution beneath the results, which the
+  policy requires;
+- `test/searchbox.policy.test.jsx`, a jsdom regression test asserting that
+  typing eight characters produces **zero** requests.
+
+Existing compliance already in place: results cached 7 days, and the app is
+well under 1 request/second because requests are now user-initiated.
 
 ---
 
