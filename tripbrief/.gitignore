@@ -15,3 +15,13 @@ twa-manifest.json.bak
 
 # Deployable bundle (regenerate with: npm run build && npm run zip)
 tripbrief-site.zip
+
+# ---------------------------------------------------------------------------
+# The repository root .gitignore is a Python one: it ignores "lib/", "build/",
+# "var/" and "parts/" as virtualenv/packaging artefacts. Those patterns also
+# match directories in this JavaScript app. Re-include ours explicitly.
+# Without this, src/lib/ is silently untracked and the Netlify build fails
+# with: Could not resolve "./lib/useSavedTrips.js" from "src/App.jsx"
+# ---------------------------------------------------------------------------
+!src/lib/
+!src/lib/**
