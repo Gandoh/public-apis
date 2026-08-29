@@ -1,0 +1,30 @@
+# Netlify headers for drag-and-drop / manual deploys.
+# netlify.toml only applies when Netlify runs the build, so these files
+# guarantee the same headers when the dist/ folder is uploaded directly.
+
+/.well-known/assetlinks.json
+  Content-Type: application/json
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()

@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "node scripts/check-pwa.mjs",
-    "assetlinks": "node scripts/make-assetlinks.mjs"
+    "assetlinks": "node scripts/make-assetlinks.mjs",
+    "zip": "npm run build && rm -f tripbrief-site.zip && cd dist && zip -qr ../tripbrief-site.zip . -x '.*' && cd .. && echo 'Created tripbrief-site.zip — drag this into Netlify'"
   },
   "dependencies": {
     "react": "^18.3.1"

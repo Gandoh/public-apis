@@ -12,3 +12,6 @@ app-release-signed.apk
 /store_icon.png
 twa-manifest.json.bak
 .gradle/
+
+# Deployable bundle (regenerate with: npm run build && npm run zip)
+tripbrief-site.zip

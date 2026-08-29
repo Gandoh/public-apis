@@ -6,6 +6,10 @@ just a shell around this exact URL.
 
 Two routes. **Netlify is the one to pick** unless you have a reason not to.
 
+> 📱 **On a phone?** Skip the command line entirely — see
+> [`DEPLOY-FROM-PHONE.md`](./DEPLOY-FROM-PHONE.md). You can connect GitHub or
+> drag-and-drop a zip straight from the Netlify app.
+
 ---
 
 ## Which route?

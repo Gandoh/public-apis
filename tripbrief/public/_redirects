@@ -1,0 +1,3 @@
+# SPA fallback. Real files (privacy.html, offline.html, /.well-known/*, assets)
+# are served first; anything else falls through to the app shell.
+/*  /index.html  200

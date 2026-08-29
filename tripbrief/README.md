@@ -13,7 +13,8 @@ npm run dev      # http://localhost:5173
 ```
 
 **Publishing?** [`DEPLOY-WEB.md`](./DEPLOY-WEB.md) gets the website live for free
-in ~10 minutes. [`LAUNCH.md`](./LAUNCH.md) then takes it to the Google Play Store.
+in ~10 minutes (or [`DEPLOY-FROM-PHONE.md`](./DEPLOY-FROM-PHONE.md) if you're on
+mobile). [`LAUNCH.md`](./LAUNCH.md) then takes it to the Google Play Store.
 
 ## What it does
 
