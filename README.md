@@ -39,20 +39,7 @@ Join our [Discord server](https://discord.com/invite/hgjA78638n/?utm_source=Gith
 
 <br >
 
-## APILayer APIs
-| API | Description | Call this API |
-|:---|:---|:---|
-| [IPstack](https://ipstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Locate and Identify Website Visitors by IP Address | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-55145132-244c-448c-8e6f-8780866e4862?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10131015-55145132-244c-448c-8e6f-8780866e4862%26entityType%3Dcollection%26workspaceId%3D2b7498b6-6d91-4fa8-817f-608441fe42a8)|
-| [Marketstack](https://marketstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Free, easy-to-use REST API interface delivering worldwide stock market data in JSON format | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-9cbac391-3611-4f50-9bfd-d24ae41c97c1?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10131015-9cbac391-3611-4f50-9bfd-d24ae41c97c1%26entityType%3Dcollection%26workspaceId%3D2b7498b6-6d91-4fa8-817f-608441fe42a8)|
-| [Weatherstack](https://weatherstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Retrieve instant, accurate weather information for any location in the world in lightweight JSON format | [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-276c4312-f682-425d-b6b1-0f82c0a7f2b3?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10131015-276c4312-f682-425d-b6b1-0f82c0a7f2b3%26entityType%3Dcollection%26workspaceId%3D2b7498b6-6d91-4fa8-817f-608441fe42a8)|
-| [Numverify](https://numverify.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers ) | Global Phone Number Validation & Lookup JSON API |[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-0760d25e-b802-412e-b0e4-26e5ca3b9ffa?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10131015-0760d25e-b802-412e-b0e4-26e5ca3b9ffa%26entityType%3Dcollection%26workspaceId%3D2b7498b6-6d91-4fa8-817f-608441fe42a8)|
-| [Fixer](https://fixer.io/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Fixer is a simple and lightweight API for current and historical foreign exchange (forex) rates. |[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-0d9c66b3-5f1a-42ed-a5ca-379217bd629d?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D10131015-0d9c66b3-5f1a-42ed-a5ca-379217bd629d%26entityType%3Dcollection%26workspaceId%3D2b7498b6-6d91-4fa8-817f-608441fe42a8)|
-| [Aviationstack](https://aviationstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Free, real-time flight status and global Aviation data API |[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-72ee0d35-018e-4370-a2b6-a66d3ebd5b5a?action=collection/fork)|
-| [Zenserp](https://zenserp.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Fast, Accurate Google Search Data Built for Developers |[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/10131015-a3d63243-081e-4961-a2f0-39c7a9394b8d?action=collection/fork)|
-| [Filestack](https://www.filestack.com/signup-start/) | Powerful API to upload, transform & deliver any file into your app |[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](www.postman.com/filestack-wolfpack/filestack/overview?sideView=agentMode)|
-| [Screenshotlayer](https://screenshotlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Capture highly customizable screenshots of any website |[Documentation](https://docs.apilayer.com/screenshotlayer/docs/api-documentation?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers)|
-| [Exchangerate Host](https://exchangerate.host/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Real-time current and historical foreign exchange and crypto rates |[Documentation](https://docs.apilayer.com/Exchangerate/docs/api-documentation?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers)|
-| [Mailboxlayer](https://mailboxlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Email Validation & Verification JSON API for Developers |[Documentation](https://docs.apilayer.com/mailboxlayer/docs/api-documentation?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers)|
+
 
 
 <br >
@@ -129,7 +116,7 @@ API | Description | Auth | HTTPS | CORS
 |:---|:---|:---|:---|:---|
 | [AdoptAPet](https://www.adoptapet.com/public/apis/pet_list.html) | Resource to help get pets adopted | `apiKey` | Yes | Yes |
 | [Axolotl](https://theaxolotlapi.netlify.app/) | Collection of axolotl pictures and facts | No | Yes | No |
-| [Cat Facts](https://alexwohlbruck.github.io/cat-facts/) | Daily cat facts | No | Yes | No | |
+| [Cat Facts](https://alexwohlbruck.github.io/cat-facts/) | Daily cat facts | No | Yes | No |
 | [Cat Facts](https://catfact.ninja/) | Random cat facts | No | Yes | Yes |
 | [Cataas](https://cataas.com/) | Cat as a service (cats pictures and gifs) | No | Yes | No |
 | [Cats](https://docs.thecatapi.com/) | Pictures of cats from Tumblr | `apiKey` | Yes | No |
@@ -372,24 +359,24 @@ API | Description | Auth | HTTPS | CORS |
 ### Cloud Storage & File Sharing
 API | Description | Auth | HTTPS | CORS |
 |---|:---|:---|:---|:---|
-| [Box](https://developer.box.com/) | File Sharing and Storage | `OAuth` | Yes | Unknown | |
-| [ddownload](https://ddownload.com/api) | File Sharing and Storage | `apiKey` | Yes | Unknown | |
-| [Dropbox](https://www.dropbox.com/developers) | File Sharing and Storage | `OAuth` | Yes | Unknown | |
-| [File.io](https://www.file.io) | Super simple file sharing, convenient, anonymous and secure | No | Yes | Unknown | |
+| [Box](https://developer.box.com/) | File Sharing and Storage | `OAuth` | Yes | Unknown |
+| [ddownload](https://ddownload.com/api) | File Sharing and Storage | `apiKey` | Yes | Unknown |
+| [Dropbox](https://www.dropbox.com/developers) | File Sharing and Storage | `OAuth` | Yes | Unknown |
+| [File.io](https://www.file.io) | Super simple file sharing, convenient, anonymous and secure | No | Yes | Unknown |
 | [Filestack](https://www.filestack.com) | Filestack File Uploader & File Upload API | `apiKey` | Yes | Unknown |
 | [FileUp](https://github.com/RealSinaSnp/FileUp) | Temporary file hosting with upload API, expiration times, and view limits | No | Yes | Unknown |
-| [GoFile](https://gofile.io/api) | Unlimited size file uploads for free | `apiKey` | Yes | Unknown | |
-| [Google Drive](https://developers.google.com/drive/) | File Sharing and Storage | `OAuth` | Yes | Unknown | |
-| [Gyazo](https://gyazo.com/api/docs) | Save & Share screen captures instantly | `apiKey` | Yes | Unknown | |
-| [Imgbb](https://api.imgbb.com/) | Simple and quick private image sharing | `apiKey` | Yes | Unknown | |
-| [OneDrive](https://developer.microsoft.com/onedrive) | File Sharing and Storage | `OAuth` | Yes | Unknown | |
-| [Pantry](https://getpantry.cloud/) | Free JSON storage for small projects | No | Yes | Yes | |
-| [Pastebin](https://pastebin.com/doc_api) | Plain Text Storage | `apiKey` | Yes | Unknown | |
-| [Pinata](https://docs.pinata.cloud/) | IPFS Pinning Services API | `apiKey` | Yes | Unknown | |
-| [Quip](https://quip.com/dev/automation/documentation) | File Sharing and Storage for groups | `apiKey` | Yes | Yes | |
-| [Storj](https://docs.storj.io/dcs/) | Decentralized Open-Source Cloud Storage | `apiKey` | Yes | Unknown | |
-| [The Null Pointer](https://0x0.st) | No-bullshit file hosting and URL shortening service | No | Yes | Unknown | |
-| [Web3 Storage](https://web3.storage/) | File Sharing and Storage for Free with 1TB Space | `apiKey` | Yes | Yes | |
+| [GoFile](https://gofile.io/api) | Unlimited size file uploads for free | `apiKey` | Yes | Unknown |
+| [Google Drive](https://developers.google.com/drive/) | File Sharing and Storage | `OAuth` | Yes | Unknown |
+| [Gyazo](https://gyazo.com/api/docs) | Save & Share screen captures instantly | `apiKey` | Yes | Unknown |
+| [Imgbb](https://api.imgbb.com/) | Simple and quick private image sharing | `apiKey` | Yes | Unknown |
+| [OneDrive](https://developer.microsoft.com/onedrive) | File Sharing and Storage | `OAuth` | Yes | Unknown |
+| [Pantry](https://getpantry.cloud/) | Free JSON storage for small projects | No | Yes | Yes |
+| [Pastebin](https://pastebin.com/doc_api) | Plain Text Storage | `apiKey` | Yes | Unknown |
+| [Pinata](https://docs.pinata.cloud/) | IPFS Pinning Services API | `apiKey` | Yes | Unknown |
+| [Quip](https://quip.com/dev/automation/documentation) | File Sharing and Storage for groups | `apiKey` | Yes | Yes |
+| [Storj](https://docs.storj.io/dcs/) | Decentralized Open-Source Cloud Storage | `apiKey` | Yes | Unknown |
+| [The Null Pointer](https://0x0.st) | No-bullshit file hosting and URL shortening service | No | Yes | Unknown |
+| [Web3 Storage](https://web3.storage/) | File Sharing and Storage for Free with 1TB Space | `apiKey` | Yes | Yes |
 
 **[⬆ Back to Index](#index)**
 <br >
@@ -523,16 +510,16 @@ API | Description | Auth | HTTPS | CORS |
 ### Data Validation
 API | Description | Auth | HTTPS | CORS |
 |---|:---|:---|:---|:---|
-| [VATlayer](https://vatlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | VAT number validation | `apiKey` | Yes | Unknown | |
+| [VATlayer](https://vatlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | VAT number validation | `apiKey` | Yes | Unknown |
 | [Attestwire](https://api.attestwire.com/docs) | Validate EN 16931 e-invoices: XRechnung, ZUGFeRD, Factur-X, Peppol BIS | `apiKey` | Yes | Yes |
-| [Lob.com](https://lob.com/) | US Address Verification | `apiKey` | Yes | Unknown | |
-| [Postman Echo](https://www.postman-echo.com) | Test api server to receive and return value from HTTP method | No | Yes | Unknown | |
-| [PurgoMalum](http://www.purgomalum.com) | Content validator against profanity & obscenity | No | No | Unknown | |
-| [SchemaShield](https://rapidapi.com/kaiasistentedavid/api/schema-change-risk) | Read-only preflight for breaking schema changes and downstream query impact | `apiKey` | Yes | Unknown | |
-| [Temsor](https://api.temsor.com/docs) | Validates Turkish national ID, tax number, IBAN, phone, plate and parses addresses | `apiKey` | Yes | Yes | |
-| [US Autocomplete](https://www.smarty.com/docs/cloud/us-autocomplete-pro-api) | Enter address data quickly with real-time address suggestions | `apiKey` | Yes | Yes | |
-| [US Extract](https://www.smarty.com/products/apis/us-extract-api) | Extract postal addresses from any text including emails | `apiKey` | Yes | Yes | |
-| [US Street Address](https://www.smarty.com/docs/cloud/us-street-api) | Validate and append data for any US postal address | `apiKey` | Yes | Yes | |
+| [Lob.com](https://lob.com/) | US Address Verification | `apiKey` | Yes | Unknown |
+| [Postman Echo](https://www.postman-echo.com) | Test api server to receive and return value from HTTP method | No | Yes | Unknown |
+| [PurgoMalum](http://www.purgomalum.com) | Content validator against profanity & obscenity | No | No | Unknown |
+| [SchemaShield](https://rapidapi.com/kaiasistentedavid/api/schema-change-risk) | Read-only preflight for breaking schema changes and downstream query impact | `apiKey` | Yes | Unknown |
+| [Temsor](https://api.temsor.com/docs) | Validates Turkish national ID, tax number, IBAN, phone, plate and parses addresses | `apiKey` | Yes | Yes |
+| [US Autocomplete](https://www.smarty.com/docs/cloud/us-autocomplete-pro-api) | Enter address data quickly with real-time address suggestions | `apiKey` | Yes | Yes |
+| [US Extract](https://www.smarty.com/products/apis/us-extract-api) | Extract postal addresses from any text including emails | `apiKey` | Yes | Yes |
+| [US Street Address](https://www.smarty.com/docs/cloud/us-street-api) | Validate and append data for any US postal address | `apiKey` | Yes | Yes |
 
 **[⬆ Back to Index](#index)**
 <br >
@@ -723,7 +710,7 @@ API | Description | Auth | HTTPS | CORS |
 | [Api2Convert](https://www.api2convert.com/) | Online File Conversion API | `apiKey` | Yes | Unknown |
 | [apilayer pdflayer](https://pdflayer.com) | HTML/URL to PDF | `apiKey` | Yes | Unknown |
 | [Asana](https://developers.asana.com/docs) | Programmatic access to all data in your asana system | `apiKey` | Yes | Yes |
-| [BuildPDF](https://buildpdf.co/api/docs) | Convert HTML, images, and text to PDF | `apiKey` | Yes | Yes | |
+| [BuildPDF](https://buildpdf.co/api/docs) | Convert HTML, images, and text to PDF | `apiKey` | Yes | Yes |
 | [ClickUp](https://clickup.com/api) | ClickUp is a robust, cloud-based project management tool for boosting productivity | `OAuth` | Yes | Unknown |
 | [Clockify](https://clockify.me/developers-api ) | Clockify's REST-based API can be used to push/pull data to/from it & integrate it with other systems | `apiKey` | Yes | Unknown |
 | [CloudConvert](https://cloudconvert.com/api/v2) | Online file converter for audio, video, document, ebook, archive, image, spreadsheet, presentation | `apiKey` | Yes | Unknown |
@@ -856,69 +843,69 @@ API | Description | Auth | HTTPS | CORS |
 ### Finance
 API | Description | Auth | HTTPS | CORS |
 |---|:---|:---|:---|:---|
-| [Marketstack](https://marketstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Real-Time, Intraday & Historical Market Data API | `apiKey` | Yes | Unknown | |
-| [Aletheia](https://aletheiaapi.com/) | Insider trading data, earnings call analysis, financial statements, and more | `apiKey` | Yes | Yes | |
-| [Alpaca](https://alpaca.markets/docs/api-documentation/api-v2/market-data/alpaca-data-api-v2/) | Realtime and historical market data on all US equities and ETFs | `apiKey` | Yes | Yes | |
-| [Alpha Vantage](https://www.alphavantage.co/) | Realtime and historical stock data | `apiKey` | Yes | Unknown | |
-| [Banco do Brasil](https://developers.bb.com.br/home) | All Banco do Brasil financial transaction APIs | `OAuth` | Yes | Yes | |
-| [Bank Data](https://apilayer.com/marketplace/bank_data-api) | Instant IBAN and SWIFT number validation across the globe | `apiKey` | Yes | Unknown | |
-| [Billplz](https://www.billplz.com/api) | Payment platform | `apiKey` | Yes | Unknown | |
-| [Binlist](https://binlist.net/) | Public access to a database of IIN/BIN information | No | Yes | Unknown | |
-| [Boleto.Cloud](https://boleto.cloud/) | A api to generate boletos in Brazil | `apiKey` | Yes | Unknown | |
+| [Marketstack](https://marketstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers) | Real-Time, Intraday & Historical Market Data API | `apiKey` | Yes | Unknown |
+| [Aletheia](https://aletheiaapi.com/) | Insider trading data, earnings call analysis, financial statements, and more | `apiKey` | Yes | Yes |
+| [Alpaca](https://alpaca.markets/docs/api-documentation/api-v2/market-data/alpaca-data-api-v2/) | Realtime and historical market data on all US equities and ETFs | `apiKey` | Yes | Yes |
+| [Alpha Vantage](https://www.alphavantage.co/) | Realtime and historical stock data | `apiKey` | Yes | Unknown |
+| [Banco do Brasil](https://developers.bb.com.br/home) | All Banco do Brasil financial transaction APIs | `OAuth` | Yes | Yes |
+| [Bank Data](https://apilayer.com/marketplace/bank_data-api) | Instant IBAN and SWIFT number validation across the globe | `apiKey` | Yes | Unknown |
+| [Billplz](https://www.billplz.com/api) | Payment platform | `apiKey` | Yes | Unknown |
+| [Binlist](https://binlist.net/) | Public access to a database of IIN/BIN information | No | Yes | Unknown |
+| [Boleto.Cloud](https://boleto.cloud/) | A api to generate boletos in Brazil | `apiKey` | Yes | Unknown |
 | [BriefTape](https://brieftape.com) | Real-time AI-summarized SEC filings, Fed, FDA and BLS data, ticker-tagged | `apiKey` | Yes | Yes |
-| [Citi](https://sandbox.developerhub.citi.com/api-catalog-list) | All Citigroup account and statement data APIs | `apiKey` | Yes | Unknown | |
-| [CongressInvests](https://congressinvests.com) | Real-time U.S. congressional stock trade disclosures from Senate EFD and House Clerk | `apiKey` | Yes | Yes | |
-| [Dino.markets](https://dino.markets/docs) | Matched Kalshi and Polymarket prediction-market data, cross-venue spreads | `apiKey` | Yes | No | |
-| [Econdb](https://www.econdb.com/api/) | Global macroeconomic data | No | Yes | Yes | |
+| [Citi](https://sandbox.developerhub.citi.com/api-catalog-list) | All Citigroup account and statement data APIs | `apiKey` | Yes | Unknown |
+| [CongressInvests](https://congressinvests.com) | Real-time U.S. congressional stock trade disclosures from Senate EFD and House Clerk | `apiKey` | Yes | Yes |
+| [Dino.markets](https://dino.markets/docs) | Matched Kalshi and Polymarket prediction-market data, cross-venue spreads | `apiKey` | Yes | No |
+| [Econdb](https://www.econdb.com/api/) | Global macroeconomic data | No | Yes | Yes |
 | [EconPulse](https://econpulse.io) | Live economic data — CPI, PPI, energy, treasury rates, BTC premium | `apiKey` | Yes | Yes |
-| [Edgrapi](https://edgrapi.com) | Clean SEC EDGAR company financials, ratios, filings and 10-K/10-Q sections as normalized JSON | `apiKey` | Yes | Unknown | |
+| [Edgrapi](https://edgrapi.com) | Clean SEC EDGAR company financials, ratios, filings and 10-K/10-Q sections as normalized JSON | `apiKey` | Yes | Unknown |
 | [EOD Historical Data](https://eodhd.com/) | Real-time and historical stock market data with 150+ exchanges | `apiKey` | Yes | Yes |
-| [Fed Treasury](https://fiscaldata.treasury.gov/api-documentation/) | U.S. Department of the Treasury Data | No | Yes | Unknown | |
+| [Fed Treasury](https://fiscaldata.treasury.gov/api-documentation/) | U.S. Department of the Treasury Data | No | Yes | Unknown |
 | [Filingrail](https://rapidapi.com/hudson-enterprises-llc-hudson-enterprises-llc-default/api/filingrail) | SEC EDGAR filings, XBRL financials, Form 4 insider trades, 8-K events and 13F holdings | `apiKey` | Yes | Unknown |
-| [Finage](https://finage.co.uk) | Finage is a stock, currency, cryptocurrency, indices, and ETFs real-time & historical data provider | `apiKey` | Yes | Unknown | |
-| [Financial Modeling Prep](https://site.financialmodelingprep.com/developer/docs) | Realtime and historical stock data | `apiKey` | Yes | Unknown | |
-| [Finnhub](https://finnhub.io/docs/api) | Real-Time RESTful APIs and Websocket for Stocks, Currencies, and Crypto | `apiKey` | Yes | Unknown | |
-| [FRED](https://fred.stlouisfed.org/docs/api/fred/) | Economic data from the Federal Reserve Bank of St. Louis | `apiKey` | Yes | Yes | |
-| [Front Accounting APIs](https://frontaccounting.com/fawiki/index.php?n=Devel.SimpleAPIModule) | Front accounting is multilingual and multicurrency software for small businesses | `OAuth` | Yes | Yes | |
-| [Goldprice.dev](https://goldprice.dev/docs) | Cross-validated gold, silver & copper spot, futures & 30-year history in 13 currencies | No | Yes | Unknown | |
-| [Halal Terminal](https://api.halalterminal.com/docs) | Shariah-compliant stock and ETF screening across 5 methodologies, zakat and purification | `apiKey` | Yes | Yes | |
-| [Helium](https://heliumtrades.com/mcp-page/) | News with media bias scoring, balanced news synthesis, live market data, AI options pricing | No | Yes | Yes | |
-| [Hotstoks](https://hotstoks.com?utm_source=public-apis) | Stock market data powered by SQL | `apiKey` | Yes | Yes | |
+| [Finage](https://finage.co.uk) | Finage is a stock, currency, cryptocurrency, indices, and ETFs real-time & historical data provider | `apiKey` | Yes | Unknown |
+| [Financial Modeling Prep](https://site.financialmodelingprep.com/developer/docs) | Realtime and historical stock data | `apiKey` | Yes | Unknown |
+| [Finnhub](https://finnhub.io/docs/api) | Real-Time RESTful APIs and Websocket for Stocks, Currencies, and Crypto | `apiKey` | Yes | Unknown |
+| [FRED](https://fred.stlouisfed.org/docs/api/fred/) | Economic data from the Federal Reserve Bank of St. Louis | `apiKey` | Yes | Yes |
+| [Front Accounting APIs](https://frontaccounting.com/fawiki/index.php?n=Devel.SimpleAPIModule) | Front accounting is multilingual and multicurrency software for small businesses | `OAuth` | Yes | Yes |
+| [Goldprice.dev](https://goldprice.dev/docs) | Cross-validated gold, silver & copper spot, futures & 30-year history in 13 currencies | No | Yes | Unknown |
+| [Halal Terminal](https://api.halalterminal.com/docs) | Shariah-compliant stock and ETF screening across 5 methodologies, zakat and purification | `apiKey` | Yes | Yes |
+| [Helium](https://heliumtrades.com/mcp-page/) | News with media bias scoring, balanced news synthesis, live market data, AI options pricing | No | Yes | Yes |
+| [Hotstoks](https://hotstoks.com?utm_source=public-apis) | Stock market data powered by SQL | `apiKey` | Yes | Yes |
 | [IBANforge](https://api.ibanforge.com) | IBAN validation and BIC/SWIFT lookup for 89 countries with 121k+ BIC entries | `apiKey` | Yes | No |
-| [IEX Cloud](https://iexcloud.io/docs/api/) | Realtime & Historical Stock and Market Data | `apiKey` | Yes | Yes | |
-| [IG](https://labs.ig.com/gettingstarted) | Spreadbetting and CFD Market Data | `apiKey` | Yes | Unknown | |
-| [Indian Mutual Fund](https://www.mfapi.in/) | Get complete history of India Mutual Funds Data | No | Yes | Unknown | |
-| [Intrinio](https://intrinio.com/) | A wide selection of financial data feeds | `apiKey` | Yes | Unknown | |
-| [Klarna](https://docs.klarna.com/klarna-payments/api/payments-api/) | Klarna payment and shopping service | `apiKey` | Yes | Unknown | |
+| [IEX Cloud](https://iexcloud.io/docs/api/) | Realtime & Historical Stock and Market Data | `apiKey` | Yes | Yes |
+| [IG](https://labs.ig.com/gettingstarted) | Spreadbetting and CFD Market Data | `apiKey` | Yes | Unknown |
+| [Indian Mutual Fund](https://www.mfapi.in/) | Get complete history of India Mutual Funds Data | No | Yes | Unknown |
+| [Intrinio](https://intrinio.com/) | A wide selection of financial data feeds | `apiKey` | Yes | Unknown |
+| [Klarna](https://docs.klarna.com/klarna-payments/api/payments-api/) | Klarna payment and shopping service | `apiKey` | Yes | Unknown |
 | [LiquiLens](https://liquilens.in/developers/) | Public-record bank and lender failure-risk evidence | No | Yes | Yes |
-| [MercadoPago](https://www.mercadopago.com.br/developers/es/reference) | Mercado Pago API reference - all the information you need to develop your integrations | `apiKey` | Yes | Unknown | |
-| [Mono](https://mono.co/) | Connect with users’ bank accounts and access transaction data in Africa | `apiKey` | Yes | Unknown | |
-| [Moov](https://docs.moov.io/api/) | The Moov API makes it simple for platforms to send, receive, and store money | `apiKey` | Yes | Unknown | |
+| [MercadoPago](https://www.mercadopago.com.br/developers/es/reference) | Mercado Pago API reference - all the information you need to develop your integrations | `apiKey` | Yes | Unknown |
+| [Mono](https://mono.co/) | Connect with users’ bank accounts and access transaction data in Africa | `apiKey` | Yes | Unknown |
+| [Moov](https://docs.moov.io/api/) | The Moov API makes it simple for platforms to send, receive, and store money | `apiKey` | Yes | Unknown |
 | [NORTH7 Agent](https://north7.ai/v1/docs) | Trading signals, market analysis and geopolitical intelligence | `apiKey` | Yes | Yes |
-| [Nordigen](https://nordigen.com/en/account_information_documenation/integration/quickstart_guide/) | Connect to bank accounts using official bank APIs and get raw transaction data | `apiKey` | Yes | Unknown | |
-| [OpenFIGI](https://www.openfigi.com/api) | Equity, index, futures, options symbology from Bloomberg LP | `apiKey` | Yes | Yes | |
+| [Nordigen](https://nordigen.com/en/account_information_documenation/integration/quickstart_guide/) | Connect to bank accounts using official bank APIs and get raw transaction data | `apiKey` | Yes | Unknown |
+| [OpenFIGI](https://www.openfigi.com/api) | Equity, index, futures, options symbology from Bloomberg LP | `apiKey` | Yes | Yes |
 | [Plaid](https://www.plaid.com/docs) | Connect with user's bank accounts and access transaction data | `apiKey` | Yes | Unknown |
-| [Polygon](https://polygon.io/) | Historical stock market data | `apiKey` | Yes | Unknown | |
-| [Portfolio Optimizer](https://portfoliooptimizer.io/) | Portfolio analysis and optimization | No | Yes | Yes | |
-| [Razorpay IFSC](https://razorpay.com/docs/) | Indian Financial Systems Code (Bank Branch Codes) | No | Yes | Unknown | |
-| [Real Time Finance](https://github.com/Real-time-finance/finance-websocket-API/) | Websocket API to access realtime stock data | `apiKey` | No | Unknown | |
-| [SEC EDGAR Data](https://www.sec.gov/edgar/sec-api-documentation) | API to access annual reports of public US companies | No | Yes | Yes | |
-| [SmartAPI](https://smartapi.angelbroking.com/) | Gain access to set of <SmartAPI> and create end-to-end broking services | `apiKey` | Yes | Unknown | |
-| [StockData](https://www.StockData.org) | Real-Time, Intraday & Historical Market Data, News and Sentiment API | `apiKey` | Yes | Yes | |
-| [StockFit](https://api.stockfit.io/docs) | SEC filings, financial statements, earnings, ETF holdings and ownership data | `apiKey` | Yes | Yes | |
-| [Styvio](https://www.Styvio.com) | Realtime and historical stock data and current stock sentiment | `apiKey` | Yes | Unknown | |
-| [Sugra](https://sugra.ai) | One API for market data, economics, commodities, climate, and global news. LLM-ready JSON | `apiKey` | Yes | Yes | |
-| [Tax Data](https://apilayer.com/marketplace/tax_data-api) | Instant VAT number and tax validation across the globe | `apiKey` | Yes | Unknown | |
-| [TickerLayer](https://tickerlayer.com) | Real-time and historical market data for stocks, forex, crypto and more | `apiKey` | Yes | Unknown | |
-| [Top 5 Stocks](https://top5stocks.netlify.app/developers) | Daily AI-ranked stock and crypto watchlists | No | Yes | Unknown | |
-| [Tradier](https://developer.tradier.com) | US equity/option market data (delayed, intraday, historical) | `OAuth` | Yes | Yes | |
-| [Twelve Data](https://twelvedata.com/) | Stock market data (real-time & historical) | `apiKey` | Yes | Unknown | |
-| [VAT Validation](https://www.abstractapi.com/vat-validation-rates-api) | Validate VAT numbers and calculate VAT rates | `apiKey` | Yes | Yes | |
-| [WallstreetBets](https://dashboard.nbshare.io/apps/reddit/api/) | WallstreetBets Stock Comments Sentiment Analysis | No | Yes | Unknown | |
-| [Yahoo Finance](https://www.yahoofinanceapi.com/) | Real time low latency Yahoo Finance API for stock market, crypto currencies, and currency exchange | `apiKey` | Yes | Yes | |
-| [YNAB](https://api.youneedabudget.com/) | Budgeting & Planning | `OAuth` | Yes | Yes | |
-| [Zelothorn](https://zelothorn.com/developers) | Plain-English explanations of US public companies with SEC filings and earnings data | No | Yes | Yes | |
-| [Zoho Books](https://www.zoho.com/books/api/v3/) | Online accounting software, built for your business | `OAuth` | Yes | Unknown | |
+| [Polygon](https://polygon.io/) | Historical stock market data | `apiKey` | Yes | Unknown |
+| [Portfolio Optimizer](https://portfoliooptimizer.io/) | Portfolio analysis and optimization | No | Yes | Yes |
+| [Razorpay IFSC](https://razorpay.com/docs/) | Indian Financial Systems Code (Bank Branch Codes) | No | Yes | Unknown |
+| [Real Time Finance](https://github.com/Real-time-finance/finance-websocket-API/) | Websocket API to access realtime stock data | `apiKey` | No | Unknown |
+| [SEC EDGAR Data](https://www.sec.gov/edgar/sec-api-documentation) | API to access annual reports of public US companies | No | Yes | Yes |
+| [SmartAPI](https://smartapi.angelbroking.com/) | Gain access to set of <SmartAPI> and create end-to-end broking services | `apiKey` | Yes | Unknown |
+| [StockData](https://www.StockData.org) | Real-Time, Intraday & Historical Market Data, News and Sentiment API | `apiKey` | Yes | Yes |
+| [StockFit](https://api.stockfit.io/docs) | SEC filings, financial statements, earnings, ETF holdings and ownership data | `apiKey` | Yes | Yes |
+| [Styvio](https://www.Styvio.com) | Realtime and historical stock data and current stock sentiment | `apiKey` | Yes | Unknown |
+| [Sugra](https://sugra.ai) | One API for market data, economics, commodities, climate, and global news. LLM-ready JSON | `apiKey` | Yes | Yes |
+| [Tax Data](https://apilayer.com/marketplace/tax_data-api) | Instant VAT number and tax validation across the globe | `apiKey` | Yes | Unknown |
+| [TickerLayer](https://tickerlayer.com) | Real-time and historical market data for stocks, forex, crypto and more | `apiKey` | Yes | Unknown |
+| [Top 5 Stocks](https://top5stocks.netlify.app/developers) | Daily AI-ranked stock and crypto watchlists | No | Yes | Unknown |
+| [Tradier](https://developer.tradier.com) | US equity/option market data (delayed, intraday, historical) | `OAuth` | Yes | Yes |
+| [Twelve Data](https://twelvedata.com/) | Stock market data (real-time & historical) | `apiKey` | Yes | Unknown |
+| [VAT Validation](https://www.abstractapi.com/vat-validation-rates-api) | Validate VAT numbers and calculate VAT rates | `apiKey` | Yes | Yes |
+| [WallstreetBets](https://dashboard.nbshare.io/apps/reddit/api/) | WallstreetBets Stock Comments Sentiment Analysis | No | Yes | Unknown |
+| [Yahoo Finance](https://www.yahoofinanceapi.com/) | Real time low latency Yahoo Finance API for stock market, crypto currencies, and currency exchange | `apiKey` | Yes | Yes |
+| [YNAB](https://api.youneedabudget.com/) | Budgeting & Planning | `OAuth` | Yes | Yes |
+| [Zelothorn](https://zelothorn.com/developers) | Plain-English explanations of US public companies with SEC filings and earnings data | No | Yes | Yes |
+| [Zoho Books](https://www.zoho.com/books/api/v3/) | Online accounting software, built for your business | `OAuth` | Yes | Unknown |
 
 **[⬆ Back to Index](#index)**
 <br >
@@ -1783,7 +1770,7 @@ API | Description | Auth | HTTPS | CORS |
 | [Bluesky](https://docs.bsky.app/) | Decentralized social networking via the AT protocol | No | Yes | Yes |
 | [Cisco Spark](https://developer.ciscospark.com) | Team Collaboration Software | `OAuth` | Yes | Unknown |
 | [Dangerous Discord Database](https://discord.riverside.rocks/docs/index.php) | Database of malicious Discord accounts | `apiKey` | Yes | Unknown |
-| [Discord](https://discord.com/developers/docs/intro) | Make bots for Discord, integrate Discord onto an external platform | `OAuth` | Yes | Unknown | | |
+| [Discord](https://discord.com/developers/docs/intro) | Make bots for Discord, integrate Discord onto an external platform | `OAuth` | Yes | Unknown | |
 | [Disqus](https://disqus.com/api/docs/auth/) | Communicate with Disqus data | `OAuth` | Yes | Unknown |
 | [Doge-Meme](https://api.doge-meme.lol/docs) | Top meme posts from r/dogecoin which include 'Meme' flair | No | Yes | Yes |
 | [Facebook](https://developers.facebook.com/) | Facebook Login, Share on FB, Social Plugins, Analytics and more | `OAuth` | Yes | Unknown |
