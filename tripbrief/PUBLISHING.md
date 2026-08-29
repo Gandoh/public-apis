@@ -90,7 +90,7 @@ domain. What does *not* work is a project **subpath** like
 Verify the deployment:
 
 ```bash
-npm run check https://your-site.netlify.app
+npm run check https://tripbrief.netlify.app
 ```
 
 A `netlify.toml` is committed with the correct headers already: JSON content

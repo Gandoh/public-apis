@@ -23,7 +23,16 @@ half a day of that is actual work — the rest is Google's mandatory waiting.
 
 ---
 
-## Phase 1 — Deploy to Netlify (≈20 min)
+## Phase 1 — Deploy to Netlify ✅ DONE
+
+> **Live at https://tripbrief.netlify.app** since 29 Aug 2026, deploying from
+> `arena/01a04e2c-public-apis` on every push. Verified: manifest served as
+> `application/manifest+json`, service worker registers with a fetch handler,
+> all six icons resolve, SPA fallback works, privacy policy reachable.
+> `twa-manifest.json` already carries this host — **skip to Phase 2.**
+
+<details><summary>Original Phase 1 instructions (kept for reference)</summary>
+
 
 The Android app is a thin shell around your live site, so the site goes first.
 
@@ -53,14 +62,14 @@ The Android app is a thin shell around your live site, so the site goes first.
 - [ ] **1.4** **Write your final URL down.** Phases 3 and 5 both need it verbatim.
 - [ ] **1.5** Validate the deployment:
       ```bash
-      npm run check https://your-site.netlify.app
+      npm run check https://tripbrief.netlify.app
       ```
       Everything should pass except `assetlinks.json` — that arrives in Phase 5.
 - [ ] **1.6** Confirm the critical headers landed (`netlify.toml` sets these):
       ```bash
-      curl -sI https://your-site.netlify.app/manifest.webmanifest | grep -i content-type
+      curl -sI https://tripbrief.netlify.app/manifest.webmanifest | grep -i content-type
       # expect: application/manifest+json
-      curl -sI https://your-site.netlify.app/sw.js | grep -i cache-control
+      curl -sI https://tripbrief.netlify.app/sw.js | grep -i cache-control
       # expect: max-age=0, must-revalidate
       ```
 - [ ] **1.7** Open the site on your **phone** and actually use it. Search two
@@ -71,6 +80,8 @@ The Android app is a thin shell around your live site, so the site goes first.
       and an install icon appears in the address bar.
 
 ---
+
+</details>
 
 ## Phase 2 — Play Console account (≈1 hour + 1–3 days waiting)
 
@@ -94,7 +105,7 @@ Needs **JDK 17+** and the Android SDK. Bubblewrap will offer to install both.
       `https://` and no trailing slash** (e.g. `tripbrief.netlify.app`).
 - [ ] **3.3** Initialise:
       ```bash
-      bubblewrap init --manifest https://your-site.netlify.app/manifest.webmanifest
+      bubblewrap init --manifest https://tripbrief.netlify.app/manifest.webmanifest
       ```
 - [ ] **3.4** 🔴 **Re-open `twa-manifest.json` and confirm `targetSdkVersion` is still `36`.**
       Bubblewrap's template defaults to 35, and **Play rejects anything below 36
@@ -125,7 +136,7 @@ Ready-made assets in `assets/`:
 - [ ] **4.2** Feature graphic → `assets/play-feature-graphic-1024x500.png` (1024×500) ✅
 - [ ] **4.3** Short description (80 char limit) — copy from `PUBLISHING.md` ✅
 - [ ] **4.4** Full description — copy from `PUBLISHING.md` ✅
-- [ ] **4.5** Privacy policy URL → `https://your-site.netlify.app/privacy.html` ✅
+- [ ] **4.5** Privacy policy URL → `https://tripbrief.netlify.app/privacy.html` ✅
 - [ ] **4.6** **Screenshots — you must make these.** 2–8 phone shots required.
       Easiest route: open the site on your phone, compare two interesting cities,
       and capture:
@@ -175,14 +186,14 @@ why we chose a root-domain host.
       ```
 - [ ] **5.5** Confirm it is served directly, as JSON, with **no redirect**:
       ```bash
-      curl -sI https://your-site.netlify.app/.well-known/assetlinks.json
+      curl -sI https://tripbrief.netlify.app/.well-known/assetlinks.json
       # expect: HTTP/2 200  and  content-type: application/json
       ```
       A `301`/`302` here means the TWA will fail — `netlify.toml` is configured
       to prevent that.
 - [ ] **5.6** Verify with Google's own validator:
       ```
-      https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://your-site.netlify.app&relation=delegate_permission/common.handle_all_urls
+      https://digitalassetlinks.googleapis.com/v1/statements:list?source.web.site=https://tripbrief.netlify.app&relation=delegate_permission/common.handle_all_urls
       ```
       You want `"maxAge"` and your statement echoed back, with no error.
 - [ ] **5.7** Reinstall the app on your phone — **the URL bar should now be gone.**

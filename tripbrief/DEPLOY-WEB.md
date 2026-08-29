@@ -54,14 +54,14 @@ Netlify saves you a migration.
 
 - [ ] **4.** Verify:
       ```bash
-      npm run check https://your-site.netlify.app
+      npm run check https://tripbrief.netlify.app
       ```
       Expect everything green except `assetlinks.json`, which only matters for
       the Android app.
 
 - [ ] **5.** Confirm the headers from `netlify.toml` landed:
       ```bash
-      curl -sI https://your-site.netlify.app/manifest.webmanifest | grep -i content-type
+      curl -sI https://tripbrief.netlify.app/manifest.webmanifest | grep -i content-type
       # expect: application/manifest+json
       ```
 
