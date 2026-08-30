@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BYTEZ://PLAYGROUND</title>
+<style>
+  :root{
+    --bg:#04070a; --panel:#0a1210; --panel2:#0d1a16; --line:#123324;
+    --neon:#00ff9c; --neon-dim:#00b86f; --amber:#ffb454; --red:#ff5470;
+    --txt:#c9e8d8; --dim:#5f8a76; --mono:ui-monospace,'JetBrains Mono','Cascadia Code',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:var(--bg); color:var(--txt); font-family:var(--mono); font-size:14px;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,255,156,.022) 0 1px, transparent 1px 3px),
+      radial-gradient(1200px 600px at 70% -10%, rgba(0,255,156,.06), transparent 60%);
+  }
+  a{color:var(--neon);text-decoration:none} a:hover{text-decoration:underline}
+  header{
+    display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid var(--line);
+    position:sticky;top:0;background:rgba(4,7,10,.92);backdrop-filter:blur(6px);z-index:50;
+  }
+  .logo{font-weight:800;letter-spacing:1px;font-size:16px;color:var(--neon);text-shadow:0 0 12px rgba(0,255,156,.5);white-space:nowrap}
+  .logo span{color:var(--dim)}
+  .pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--dim);display:flex;gap:8px;align-items:center;cursor:pointer}
+  .dot{width:8px;height:8px;border-radius:50%;background:#444;display:inline-block}
+  .dot.ok{background:var(--neon);box-shadow:0 0 8px var(--neon)}
+  .dot.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .dot.bad{background:var(--red);box-shadow:0 0 8px var(--red)}
+  .spacer{flex:1}
+  button{
+    font-family:var(--mono);font-size:13px;background:var(--panel2);color:var(--neon);
+    border:1px solid var(--line);border-radius:6px;padding:8px 14px;cursor:pointer;transition:.15s;
+  }
+  button:hover{border-color:var(--neon-dim);box-shadow:0 0 10px rgba(0,255,156,.25)}
+  button:disabled{opacity:.45;cursor:wait;box-shadow:none}
+  button.primary{background:rgba(0,255,156,.12);border-color:var(--neon-dim)}
+  input,select,textarea{
+    font-family:var(--mono);font-size:13px;background:#060d0b;color:var(--txt);
+    border:1px solid var(--line);border-radius:6px;padding:9px 10px;outline:none;width:100%;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--neon-dim);box-shadow:0 0 8px rgba(0,255,156,.2)}
+  textarea{resize:vertical;min-height:70px}
+  nav{display:flex;gap:4px;padding:10px 20px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  nav button{border:none;border-radius:8px 8px 0 0;background:transparent;color:var(--dim);padding:9px 16px}
+  nav button.active{color:var(--neon);background:var(--panel);border:1px solid var(--line);border-bottom-color:var(--panel)}
+  main{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+  section.tab{display:none} section.tab.active{display:block}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+  .card h3{margin:0 0 12px;font-size:13px;letter-spacing:1.5px;color:var(--neon-dim);text-transform:uppercase}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .row > *{flex:1;min-width:140px}
+  .row > button{flex:0 0 auto}
+  label.small{display:block;font-size:11px;color:var(--dim);margin:10px 0 4px;letter-spacing:1px}
+  #banner{max-width:1180px;margin:14px auto 0;padding:0 20px}
+  .banner{
+    border:1px solid;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:10px;
+  }
+  .banner.warn{border-color:var(--amber);color:var(--amber);background:rgba(255,180,84,.06)}
+  .banner.bad{border-color:var(--red);color:var(--red);background:rgba(255,84,112,.06)}
+  .banner.info{border-color:var(--neon-dim);color:var(--neon);background:rgba(0,255,156,.05)}
+  /* chat */
+  #chatlog{height:420px;overflow-y:auto;padding:12px;background:#050b09;border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;gap:10px}
+  .msg{max-width:85%;padding:9px 12px;border-radius:10px;white-space:pre-wrap;word-break:break-word;line-height:1.5}
+  .msg.user{align-self:flex-end;background:rgba(0,255,156,.1);border:1px solid rgba(0,255,156,.25)}
+  .msg.bot{align-self:flex-start;background:var(--panel2);border:1px solid var(--line)}
+  .msg .who{font-size:10px;color:var(--dim);letter-spacing:1px;margin-bottom:3px}
+  .cursor::after{content:"▊";animation:blink 1s steps(1) infinite;color:var(--neon)}
+  @keyframes blink{50%{opacity:0}}
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .shot{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#050b09}
+  .shot img{width:100%;display:block}
+  .shot .cap{padding:8px;font-size:11px;color:var(--dim);display:flex;justify-content:space-between;gap:8px;align-items:center}
+  /* vision */
+  #dropzone{border:2px dashed var(--line);border-radius:10px;padding:26px;text-align:center;color:var(--dim);cursor:pointer;transition:.15s}
+  #dropzone:hover,#dropzone.drag{border-color:var(--neon-dim);color:var(--neon)}
+  #visionCanvas{max-width:100%;border-radius:8px;border:1px solid var(--line)}
+  .detline{font-size:12px;padding:5px 8px;border-bottom:1px solid var(--line);display:flex;gap:8px}
+  .detline b{color:var(--neon)}
+  /* models */
+  .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+  .mcard{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px}
+  .mcard .id{color:var(--neon);font-size:12px;word-break:break-all}
+  .mcard .task{font-size:10px;color:var(--amber);letter-spacing:1px}
+  .mcard .lab{font-size:11px;color:var(--dim)}
+  .mrow{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;align-items:center}
+  .mrow:hover{background:rgba(0,255,156,.04)}
+  .mrow .t{color:var(--amber);font-size:10px;min-width:150px}
+  .mrow .i{flex:1;word-break:break-all}
+  dialog{background:var(--panel);color:var(--txt);border:1px solid var(--neon-dim);border-radius:12px;padding:22px;max-width:520px;width:92%}
+  dialog::backdrop{background:rgba(0,0,0,.75)}
+  .toast{
+    position:fixed;bottom:18px;right:18px;background:var(--panel2);border:1px solid var(--red);color:var(--txt);
+    padding:12px 16px;border-radius:8px;font-size:13px;max-width:420px;z-index:99;display:none;white-space:pre-wrap;
+  }
+  .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--neon-dim);border-top-color:transparent;border-radius:50%;animation:sp 1s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .hint{font-size:11px;color:var(--dim)}
+  kbd{border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:11px;background:#060d0b}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">BYTEZ<span>://</span>PLAYGROUND</div>
+  <div class="pill" id="statusPill" title="click for details"><span class="dot" id="keyDot"></span><span id="keyTxt">no key</span><span class="dot" id="netDot"></span><span id="netTxt">?</span></div>
+  <div class="spacer"></div>
+  <button onclick="keyDlg.showModal()">⚿ KEY</button>
+</header>
+
+<div id="banner"></div>
+
+<nav id="tabs">
+  <button data-tab="chat" class="active">⌨ CHAT</button>
+  <button data-tab="image">🎨 IMAGE</button>
+  <button data-tab="vision">👁 VISION</button>
+  <button data-tab="speech">🔊 SPEECH</button>
+  <button data-tab="models">🗄 MODELS</button>
+</nav>
+
+<main>
+  <!-- ============ CHAT ============ -->
+  <section class="tab active" id="tab-chat">
+    <div class="card">
+      <div class="row">
+        <div style="flex:3"><label class="small">MODEL (any chat model ≤ 7B on free tier)</label>
+          <input id="chatModel" list="modelList" placeholder="Qwen/Qwen3-4B"></div>
+        <div style="flex:0 0 130px"><label class="small">TEMP <span id="tempV">0.7</span></label>
+          <input type="range" id="chatTemp" min="0" max="1.5" step="0.05" value="0.7" oninput="tempV.textContent=this.value"></div>
+        <div style="flex:0 0 130px"><label class="small">MAX TOKENS</label>
+          <input type="number" id="chatMax" value="512" min="16" max="4096"></div>
+        <div style="flex:0 0 110px;display:flex;align-items:flex-end">
+          <label class="small" style="display:flex;gap:6px;align-items:center;margin:0 0 10px"><input type="checkbox" id="chatStream" checked style="width:auto"> stream</label></div>
+      </div>
+      <div id="chatlog"></div>
+      <div class="row" style="margin-top:10px">
+        <input id="chatInput" placeholder="talk to the machine… (Enter to send, Shift+Enter for newline)" autocomplete="off">
+        <button class="primary" id="chatSend">SEND ▸</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMAGE ============ -->
+  <section class="tab" id="tab-image">
+    <div class="card">
+      <h3>text → image</h3>
+      <label class="small">MODEL</label>
+      <input id="imgModel" list="modelList" placeholder="dreamlike-art/dreamlike-photoreal-2.0">
+      <label class="small">PROMPT</label>
+      <textarea id="imgPrompt" placeholder="a hacker raccoon in a neon server room, cinematic, rain"></textarea>
+      <div class="row" style="margin-top:10px">
+        <span class="hint">⏳ serverless cold starts can take 20–60s on free tier</span>
+        <button class="primary" id="imgGo">GENERATE ✦</button>
+      </div>
+    </div>
+    <div class="card"><div class="gallery" id="imgGallery"></div></div>
+  </section>
+
+  <!-- ============ VISION ============ -->
+  <section class="tab" id="tab-vision">
+    <div class="card">
+      <h3>image → insight</h3>
+      <div class="row">
+        <div style="flex:2">
+          <div id="dropzone">drop an image here, or click to pick 📂<input type="file" id="visionFile" accept="image/*" hidden></div>
+          <label class="small">TASK</label>
+          <select id="visionTask">
+            <option value="image-to-text">caption (image-to-text)</option>
+            <option value="object-detection">detect objects</option>
+            <option value="zero-shot-object-detection">detect named things (zero-shot)</option>
+            <option value="image-classification">classify</option>
+          </select>
+          <div id="zsWrap" style="display:none">
+            <label class="small">CANDIDATE LABELS (comma separated)</label>
+            <input id="zsLabels" placeholder="cat, dog, robot">
+          </div>
+          <label class="small">MODEL</label>
+          <input id="visionModel" list="modelList">
+          <div class="row" style="margin-top:12px"><button class="primary" id="visionGo">ANALYZE ◉</button></div>
+        </div>
+        <div style="flex:3;text-align:center">
+          <canvas id="visionCanvas" width="640" height="420"></canvas>
+          <div class="hint" style="margin-top:6px" id="visionHint">no image loaded</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="visionResults"></div>
+  </section>
+
+  <!-- ============ SPEECH ============ -->
+  <section class="tab" id="tab-speech">
+    <div class="card">
+      <h3>text → speech</h3>
+      <div class="row">
+        <div style="flex:2"><textarea id="ttsText" placeholder="hello, world. i am a free model.">The quickest way to predict the future is to build it.</textarea></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+          <input id="ttsModel" list="modelList" placeholder="facebook/mms-tts-eng">
+          <button class="primary" id="ttsGo">SPEAK ♪</button>
+          <audio id="ttsAudio" controls style="width:100%"></audio>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>speech → text</h3>
+      <div class="row">
+        <div style="flex:2"><input type="file" id="asrFile" accept="audio/*" style="padding:8px"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+          <input id="asrModel" list="modelList" placeholder="openai/whisper-base">
+          <button class="primary" id="asrGo">TRANSCRIBE ✎</button>
+        </div>
+      </div>
+      <pre id="asrOut" style="white-space:pre-wrap;color:var(--neon);min-height:20px;margin-top:12px"></pre>
+    </div>
+  </section>
+
+  <!-- ============ MODELS ============ -->
+  <section class="tab" id="tab-models">
+    <div class="card">
+      <h3>catalog</h3>
+      <div class="row">
+        <input id="modelSearch" placeholder="search 175k+ models… (press Enter)">
+        <select id="modelTask" style="max-width:280px"><option value="">all tasks</option></select>
+        <button id="loadCatalog">LOAD FULL CATALOG</button>
+      </div>
+      <div class="hint" style="margin-top:8px" id="catalogInfo">featured picks below — load the full catalog to search everything</div>
+    </div>
+    <div class="card" id="modelResults"></div>
+  </section>
+</main>
+
+<datalist id="modelList"></datalist>
+
+<dialog id="keyDlg">
+  <h3 style="color:var(--neon);margin:0 0 6px">⚿ BYTEZ API KEY</h3>
+  <p class="hint" style="margin:0 0 12px">Free key → <a href="https://bytez.com" target="_blank" rel="noopener">bytez.com</a> → sign up → <b>API Dashboard</b>. Free plan: <b>$1 credits refreshed every 4 weeks</b>, open models ≤ 7B params.<br><br>The key is kept <b>in this server's memory only</b> — never written to disk, never logged.</p>
+  <input id="keyInput" placeholder="paste key here" autocomplete="off">
+  <div class="row" style="margin-top:14px">
+    <button class="primary" id="keySave">SAVE</button>
+    <button id="keyClear">CLEAR</button>
+    <button onclick="keyDlg.close()">CLOSE</button>
+  </div>
+  <pre id="keyStatus" class="hint" style="margin-top:12px"></pre>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================== helpers ============================== */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const API = p => fetch(p);
+
+let FEATURED = [], DEFAULTS = {}, CATALOG = null, TASKS = new Set();
+
+function toast(msg, ms = 6000){
+  const t = $('#toast'); t.textContent = msg; t.style.display = 'block';
+  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', ms);
+}
+async function jfetch(url, opts){
+  let r;
+  try { r = await fetch(url, opts); }
+  catch(e){ throw new Error('server unreachable: ' + e.message); }
+  let data = null;
+  try { data = await r.json(); } catch(e){ data = {error: 'non-JSON response', raw: ''}; }
+  if (!r.ok) {
+    const parts = [data.error || ('HTTP ' + r.status)];
+    if (data.hint) parts.push(data.hint);
+    const err = new Error(parts.join(' — '));
+    err.payload = data; throw err;
+  }
+  return data;
+}
+function busy(btn, on, label){
+  if (on){ btn.dataset.label = btn.textContent; btn.disabled = true; btn.innerHTML = '<span class="spin"></span>' + (label || 'working'); }
+  else { btn.disabled = false; btn.textContent = btn.dataset.label || btn.textContent; }
+}
+
+/* media + text extraction from unified-run outputs */
+function findMedia(output){
+  const scan = x => {
+    if (typeof x === 'string'){
+      if (/^https?:\/\//.test(x)) return {kind:'url', value:x};
+      if (x.length > 512) return {kind:'b64', value:x};
+    }
+    if (Array.isArray(x)){ for (const i of x){ const f = scan(i); if (f) return f; } }
+    if (x && typeof x === 'object'){
+      for (const k of ['url','image_url','audio_url','video_url'])
+        if (typeof x[k] === 'string' && /^https?:/.test(x[k])) return {kind:'url', value:x[k]};
+      for (const k of ['base64','b64','image','audio','video','content'])
+        if (typeof x[k] === 'string' && x[k].length > 512) return {kind:'b64', value:x[k]};
+    }
+    return null;
+  };
+  return scan(output);
+}
+function textFromOutput(output){
+  if (output == null) return '';
+  if (typeof output === 'string') return output;
+  if (Array.isArray(output)){
+    if (output.length && typeof output[0] === 'object'){
+      for (const k of ['generated_text','translation_text','summary_text','answer','text'])
+        if (k in output[0]) return output.map(i => i[k]).join('\n');
+    }
+    return output.map(i => typeof i === 'string' ? i : JSON.stringify(i)).join('\n');
+  }
+  if (typeof output === 'object'){
+    for (const k of ['generated_text','text','answer','caption']) if (k in output) return String(output[k]);
+  }
+  return JSON.stringify(output, null, 2);
+}
+
+/* ============================== tabs ============================== */
+$$('#tabs button').forEach(b => b.onclick = () => {
+  $$('#tabs button').forEach(x => x.classList.toggle('active', x === b));
+  $$('section.tab').forEach(s => s.classList.toggle('active', s.id === 'tab-' + b.dataset.tab));
+});
+function goto(tab){ $$('#tabs button').find(b => b.dataset.tab === tab).click(); }
+
+/* ============================== status + key ============================== */
+async function refreshStatus(){
+  try {
+    const s = await jfetch('/api/status');
+    setDot('#keyDot', s.has_key && s.auth_valid !== false, s.has_key ? (s.auth_valid === false ? 'bad' : 'ok') : 'warn');
+    $('#keyTxt').textContent = s.has_key ? ('key ' + s.key_masked + (s.auth_valid === false ? ' ✗' : ' ✓')) : 'no key';
+    setDot('#netDot', s.upstream && s.upstream.reachable, s.upstream ? (s.upstream.reachable ? 'ok' : 'bad') : 'warn');
+    $('#netTxt').textContent = s.upstream ? (s.upstream.reachable ? 'api ok' : 'api blocked') : '?';
+    renderBanner(s);
+  } catch(e){
+    setDot('#netDot', false, 'bad'); $('#netTxt').textContent = 'server?';
+  }
+}
+function setDot(sel, good, cls){ const d = $(sel); d.className = 'dot ' + (cls || (good ? 'ok' : 'bad')); }
+function renderBanner(s){
+  const b = $('#banner'); b.innerHTML = '';
+  const add = (cls, html) => { b.insertAdjacentHTML('beforeend', `<div class="banner ${cls}">${html}</div>`); };
+  if (!s.has_key)
+    add('warn', `no key — grab a FREE one at <a href="https://bytez.com" target="_blank">bytez.com</a> → API Dashboard → paste via ⚿ KEY. Free plan: $1 credits every 4 weeks, open models ≤ 7B.`);
+  if (s.upstream && !s.upstream.reachable)
+    add('bad', `this sandbox can't reach <b>api.bytez.com</b> (${s.upstream.detail}).<br>Run the playground on your own machine: <kbd>python3 server.py</kbd> — everything else is ready.`);
+  if (s.has_key && s.auth_valid === false)
+    add('bad', 'key rejected by Bytez (401) — double-check it in the ⚿ KEY dialog.');
+}
+$('#keySave').onclick = async () => {
+  busy($('#keySave'), true, 'saving');
+  try {
+    await jfetch('/api/key', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({key: $('#keyInput').value.trim()})});
+    await refreshStatus();
+    $('#keyStatus').textContent = 'saved ✓ — testing…';
+    const s = await jfetch('/api/status');
+    $('#keyStatus').textContent = s.auth_valid === true ? 'key works ✓' : (s.auth_valid === false ? 'key rejected ✗' : 'saved (not tested — api unreachable)');
+    if (s.auth_valid === true){ seedDatalist(); loadFeatured(); }
+  } catch(e){ $('#keyStatus').textContent = 'error: ' + e.message; }
+  busy($('#keySave'), false);
+};
+$('#keyClear').onclick = async () => { await fetch('/api/key', {method:'DELETE'}); $('#keyInput').value=''; $('#keyStatus').textContent='cleared'; refreshStatus(); };
+
+/* ============================== models ============================== */
+function seedDatalist(){
+  const ids = new Set();
+  FEATURED.forEach(f => ids.add(f.id));
+  if (CATALOG) CATALOG.forEach(m => ids.add(m.id));
+  $('#modelList').innerHTML = [...ids].map(i => `<option value="${i}">`).join('');
+  const ts = new Set(FEATURED.map(f => f.task));
+  if (CATALOG) CATALOG.forEach(m => m.task && ts.add(m.task));
+  TASKS = ts;
+  const sel = $('#modelTask');
+  sel.innerHTML = '<option value="">all tasks</option>' + [...ts].sort().map(t => `<option>${t}</option>`).join('');
+}
+function applyDefaults(){
+  $('#chatModel').value = DEFAULTS.chat || '';
+  $('#imgModel').value = DEFAULTS['text-to-image'] || '';
+  $('#ttsModel').value = DEFAULTS['text-to-speech'] || '';
+  $('#asrModel').value = DEFAULTS['automatic-speech-recognition'] || '';
+  setVisionModel();
+}
+function setVisionModel(){
+  const t = $('#visionTask').value;
+  $('#visionModel').value = DEFAULTS[t] || '';
+  $('#zsWrap').style.display = t === 'zero-shot-object-detection' ? 'block' : 'none';
+}
+$('#visionTask').onchange = setVisionModel;
+
+async function loadFeatured(){
+  try {
+    const d = await jfetch('/api/defaults');
+    DEFAULTS = d.defaults; FEATURED = d.featured; applyDefaults(); seedDatalist(); renderModelResults();
+  } catch(e){ toast('failed to load featured models: ' + e.message); }
+}
+function mcard(f){
+  return `<div class="mcard"><div class="task">${f.task}${f.warn ? ' ⚠' : ''}</div><div class="id">${f.id}</div><div class="lab">${f.label || ''}</div>
+    <button onclick="useModel('${f.id}','${f.task}')">USE ▸</button></div>`;
+}
+function renderModelResults(q, task){
+  const box = $('#modelResults');
+  let items = FEATURED;
+  if (q || task){
+    if (!CATALOG){ box.innerHTML = '<div class="hint">load the full catalog first to search 175k+ models.</div>'; return; }
+    items = CATALOG.filter(m => (!task || m.task === task) && (!q || m.id.toLowerCase().includes(q)));
+    box.innerHTML = `<div class="hint" style="margin-bottom:8px">${items.length} matches (showing first 100)</div>` +
+      items.slice(0, 100).map(m => `<div class="mrow"><span class="t">${m.task || '?'}</span><span class="i">${m.id}</span><button onclick="useModel('${m.id}','${m.task || ''}')">USE ▸</button></div>`).join('');
+    return;
+  }
+  box.innerHTML = '<h3 style="color:var(--neon-dim);font-size:12px;letter-spacing:1px">FEATURED — FREE-TIER FRIENDLY</h3><div class="mgrid">' + items.map(mcard).join('') + '</div>';
+}
+function useModel(id, task){
+  const tab = ({chat:'chat','text-generation':'chat', 'text-to-image':'image', 'image-to-text':'vision',
+    'object-detection':'vision','zero-shot-object-detection':'vision','image-classification':'vision',
+    'text-to-speech':'speech','automatic-speech-recognition':'speech'})[task] || 'chat';
+  goto(tab);
+  if (tab === 'chat') $('#chatModel').value = id;
+  else if (tab === 'image') $('#imgModel').value = id;
+  else if (tab === 'speech'){ (task === 'automatic-speech-recognition' ? $('#asrModel') : $('#ttsModel')).value = id; }
+  else $('#visionModel').value = id;
+  toast('model set: ' + id, 2500);
+}
+$('#loadCatalog').onclick = async () => {
+  busy($('#loadCatalog'), true, 'loading 175k…');
+  try {
+    const d = await jfetch('/api/models?full=1');
+    if (d.error) toast('catalog error: ' + d.error);
+    if (d.catalog){ CATALOG = d.catalog; seedDatalist(); $('#catalogInfo').textContent = `catalog loaded — ${d.count} models. search away.`; renderModelResults(); }
+  } catch(e){ toast(e.message); }
+  busy($('#loadCatalog'), false);
+};
+$('#modelSearch').onkeydown = e => { if (e.key === 'Enter') renderModelResults($('#modelSearch').value.toLowerCase().trim(), $('#modelTask').value); };
+$('#modelTask').onchange = () => renderModelResults($('#modelSearch').value.toLowerCase().trim(), $('#modelTask').value);
+
+/* ============================== chat ============================== */
+const chatlog = $('#chatlog');
+function addMsg(role, text){
+  const d = document.createElement('div');
+  d.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+  d.innerHTML = `<div class="who">${role}</div><div class="body"></div>`;
+  d.querySelector('.body').textContent = text;
+  chatlog.appendChild(d); chatlog.scrollTop = chatlog.scrollHeight;
+  return d.querySelector('.body');
+}
+const messages = [];
+async function sendChat(){
+  const input = $('#chatInput');
+  const text = input.value.trim(); if (!text) return;
+  const model = $('#chatModel').value.trim() || DEFAULTS.chat;
+  input.value = '';
+  messages.push({role:'user', content:text});
+  addMsg('user', text);
+  const bodyEl = addMsg('bot', '');
+  bodyEl.parentElement.querySelector('.who').textContent = 'bot · ' + model;
+  const stream = $('#chatStream').checked;
+  busy($('#chatSend'), true, '…');
+  let reply = '';
+  try {
+    if (stream){
+      const resp = await fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({model, messages, stream:true, params:{temperature:+$('#chatTemp').value, max_tokens:+$('#chatMax').value}})});
+      if (!resp.ok || !(resp.body)){
+        const data = await resp.json().catch(() => ({}));
+        throw new Error((data.error || 'HTTP ' + resp.status) + (data.hint ? ' — ' + data.hint : ''));
+      }
+      bodyEl.classList.add('cursor');
+      const reader = resp.body.getReader(), dec = new TextDecoder();
+      let buf = '';
+      outer: while (true){
+        const {done, value} = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, {stream:true});
+        const lines = buf.split('\n'); buf = lines.pop();
+        for (const line of lines){
+          const l = line.trim();
+          if (!l.startsWith('data:')) continue;
+          const payload = l.slice(5).trim();
+          if (payload === '[DONE]') break outer;
+          try {
+            const j = JSON.parse(payload);
+            const delta = j.choices?.[0]?.delta?.content;
+            if (delta){ reply += delta; bodyEl.textContent = reply; chatlog.scrollTop = chatlog.scrollHeight; }
+          } catch(e){}
+        }
+      }
+    } else {
+      const data = await jfetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({model, messages, stream:false, params:{temperature:+$('#chatTemp').value, max_tokens:+$('#chatMax').value}})});
+      reply = data.choices?.[0]?.message?.content ?? JSON.stringify(data).slice(0, 400);
+      bodyEl.textContent = reply;
+    }
+    messages.push({role:'assistant', content:reply});
+    if (!reply) bodyEl.textContent = '(empty response)';
+  } catch(e){ bodyEl.textContent = '✗ ' + e.message; bodyEl.style.color = 'var(--red)'; }
+  bodyEl.classList.remove('cursor');
+  busy($('#chatSend'), false);
+  chatlog.scrollTop = chatlog.scrollHeight;
+}
+$('#chatSend').onclick = sendChat;
+$('#chatInput').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendChat(); } });
+
+/* ============================== image ============================== */
+$('#imgGo').onclick = async () => {
+  const btn = $('#imgGo');
+  const prompt = $('#imgPrompt').value.trim();
+  const model = $('#imgModel').value.trim() || DEFAULTS['text-to-image'];
+  if (!prompt) return toast('type a prompt first');
+  busy(btn, true, 'generating');
+  try {
+    const d = await jfetch('/api/run/' + encodeURIComponent(model), {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({text: prompt})});
+    const m = findMedia(d.output);
+    if (!m) throw new Error('no media in output: ' + JSON.stringify(d).slice(0, 200));
+    const src = m.kind === 'url' ? m.value : 'data:image/png;base64,' + m.value;
+    const fig = document.createElement('div');
+    fig.className = 'shot';
+    fig.innerHTML = `<img src="${src}"><div class="cap"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">${model}</span><a href="${src}" download="bytez.png">save</a></div>`;
+    $('#imgGallery').prepend(fig);
+  } catch(e){ toast('✗ ' + e.message); }
+  busy(btn, false);
+};
+
+/* ============================== vision ============================== */
+let visionImg = null, visionB64 = null;
+const canvas = $('#visionCanvas'), ctx = canvas.getContext('2d');
+function loadVisionFile(file){
+  const rd = new FileReader();
+  rd.onload = () => {
+    visionB64 = rd.result.split(',')[1];
+    visionImg = new Image();
+    visionImg.onload = () => {
+      const scale = Math.min(640 / visionImg.width, 420 / visionImg.height, 1);
+      canvas.width = visionImg.width * scale; canvas.height = visionImg.height * scale;
+      drawVision();
+      $('#visionHint').textContent = `${file.name} — ${visionImg.width}×${visionImg.height}`;
+    };
+    visionImg.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+function drawVision(dets){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (visionImg) ctx.drawImage(visionImg, 0, 0, canvas.width, canvas.height);
+  if (!dets) return;
+  ctx.font = '12px monospace'; ctx.textBaseline = 'top';
+  (dets || []).forEach((d, i) => {
+    const b = d.box || {}; const hue = (i * 67) % 360;
+    ctx.strokeStyle = `hsl(${hue},100%,60%)`; ctx.lineWidth = 2;
+    ctx.strokeRect(b.xmin, b.ymin, (b.xmax - b.xmin), (b.ymax - b.ymin));
+    const label = `${d.label} ${Math.round((d.score || 0) * 100)}%`;
+    const w = ctx.measureText(label).width + 8;
+    ctx.fillStyle = `hsla(${hue},100%,60%,.85)`;
+    ctx.fillRect(b.xmin, b.ymin, w, 16);
+    ctx.fillStyle = '#000'; ctx.fillText(label, b.xmin + 4, b.ymin + 2);
+  });
+}
+$('#dropzone').onclick = () => $('#visionFile').click();
+$('#visionFile').onchange = e => e.target.files[0] && loadVisionFile(e.target.files[0]);
+const dz = $('#dropzone');
+dz.ondragover = e => { e.preventDefault(); dz.classList.add('drag'); };
+dz.ondragleave = () => dz.classList.remove('drag');
+dz.ondrop = e => { e.preventDefault(); dz.classList.remove('drag'); const f = e.dataTransfer.files[0]; if (f) loadVisionFile(f); };
+$('#visionGo').onclick = async () => {
+  const btn = $('#visionGo');
+  if (!visionB64) return toast('drop an image first');
+  const task = $('#visionTask').value;
+  const model = $('#visionModel').value.trim();
+  if (!model) return toast('pick a model');
+  busy(btn, true, 'analyzing');
+  const payload = {base64: visionB64};
+  if (task === 'zero-shot-object-detection')
+    payload.candidate_labels = $('#zsLabels').value.split(',').map(s => s.trim()).filter(Boolean);
+  try {
+    const d = await jfetch('/api/run/' + encodeURIComponent(model), {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+    const out = d.output;
+    if (task === 'object-detection' || task === 'zero-shot-object-detection'){
+      const dets = Array.isArray(out) ? out : [out];
+      drawVision(dets);
+      $('#visionResults').innerHTML = dets.map(x => `<div class="detline"><b>${x.label ?? '?'}</b> ${Math.round((x.score || 0) * 100)}% <span class="hint">${JSON.stringify(x.box || '')}</span></div>`).join('') || '<span class="hint">nothing detected</span>';
+    } else {
+      drawVision();
+      $('#visionResults').innerHTML = `<div class="detline"><b>result</b> ${textFromOutput(out).replace(/</g, '&lt;')}</div>`;
+    }
+  } catch(e){ toast('✗ ' + e.message); }
+  busy(btn, false);
+};
+
+/* ============================== speech ============================== */
+$('#ttsGo').onclick = async () => {
+  const btn = $('#ttsGo');
+  const model = $('#ttsModel').value.trim() || DEFAULTS['text-to-speech'];
+  const text = $('#ttsText').value.trim();
+  if (!text) return toast('type something to speak');
+  busy(btn, true, 'synthesizing');
+  try {
+    const d = await jfetch('/api/run/' + encodeURIComponent(model), {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({text})});
+    const m = findMedia(d.output);
+    if (!m) throw new Error('no audio in output: ' + JSON.stringify(d).slice(0, 200));
+    $('#ttsAudio').src = m.kind === 'url' ? m.value : 'data:audio/wav;base64,' + m.value;
+    $('#ttsAudio').play().catch(() => {});
+  } catch(e){ toast('✗ ' + e.message); }
+  busy(btn, false);
+};
+$('#asrGo').onclick = async () => {
+  const btn = $('#asrGo');
+  const f = $('#asrFile').files[0];
+  if (!f) return toast('pick an audio file');
+  const model = $('#asrModel').value.trim() || DEFAULTS['automatic-speech-recognition'];
+  busy(btn, true, 'transcribing');
+  const rd = new FileReader();
+  rd.onload = async () => {
+    try {
+      const b64 = rd.result.split(',')[1];
+      const d = await jfetch('/api/run/' + encodeURIComponent(model), {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({base64: b64})});
+      $('#asrOut').textContent = textFromOutput(d.output) || '(empty)';
+    } catch(e){ $('#asrOut').textContent = '✗ ' + e.message; $('#asrOut').style.color = 'var(--red)'; }
+    busy(btn, false);
+  };
+  rd.readAsDataURL(f);
+};
+
+/* ============================== boot ============================== */
+(async function boot(){
+  await loadFeatured();
+  await refreshStatus();
+  const s = await fetch('/api/status').then(r => r.json()).catch(() => null);
+  if (s && s.has_key && s.upstream && s.upstream.reachable){
+    const info = $('#catalogInfo');
+    info.textContent = 'tip: press LOAD FULL CATALOG to index all models for search';
+  }
+})();
+</script>
+</body>
+</html>

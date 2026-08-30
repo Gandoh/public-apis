@@ -1356,6 +1356,7 @@ API | Description | Auth | HTTPS | CORS |
 | [AI Economics Tools](https://piszczek.pl/tools/api) | Token cost, LLM energy, agent-hour and Proof-Adjusted Autonomy calculators by Michał Piszczek | No | Yes | Yes |
 | [AI For Thai](https://aiforthai.in.th/index.php) | Free Various Thai AI API | `apiKey` | Yes | Yes |
 | [BRAINIALL](https://github.com/fasuizu-br/brainiall-transcription-skill) | PT-BR and Spanish audio transcription with diarization and SRT/VTT | `apiKey` | Yes | Yes |
+| [Bytez](https://bytez.com) | Unified serverless inference API for 175k+ open-source models (chat, text-to-image, vision, speech, video) with OpenAI-compatible endpoints and free monthly credits | `apiKey` | Yes | Unknown |
 | [Clarifai](https://docs.clarifai.com/api-guide/api-overview) | Computer Vision | `OAuth` | Yes | Unknown |
 | [Cloudmersive](https://www.cloudmersive.com/image-recognition-and-processing-api) | Image captioning, face recognition, NSFW classification | `apiKey` | Yes | Yes |
 | [DeepAI](https://deepai.org/) | Provides AI-powered APIs for text generation, image processing, and more | `apiKey` | Yes | Yes |
