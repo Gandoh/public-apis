@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101827" />
+    <meta
+      name="description"
+      content="API Scout is a fast, searchable catalog of public APIs for developers who want to ship sooner."
+    />
+    <title>API Scout — Find the API that ships your next feature</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="API Scout home">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span class="brand-name">API<span>Scout</span></span>
+          <span class="brand-caption">public API intelligence</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#explore">Explore</a>
+          <a href="#saved">Shortlist <span class="nav-count" id="saved-count">0</span></a>
+          <a href="#partners">For providers</a>
+        </nav>
+        <button class="button button-small button-dark" type="button" data-action="match">
+          Find my fit <span class="button-arrow">↗</span>
+        </button>
+      </header>
+
+      <main id="top">
+        <section class="hero section-pad">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> THE OPEN CATALOG, SHARPENED</div>
+            <h1>Find the API that <em>ships</em> your next feature.</h1>
+            <p class="hero-lede">
+              Stop scrolling through stale lists. Search, compare, and shortlist the building blocks behind your next great product.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#explore">Explore the catalog <span class="button-arrow">↓</span></a>
+              <button class="button button-ghost" type="button" data-action="match">Let us match you <span class="shortcut">⌘ J</span></button>
+            </div>
+            <p class="hero-footnote"><span class="pulse"></span> Curated from the open <a href="https://github.com/public-apis/public-apis" target="_blank" rel="noreferrer">public-apis</a> catalog · links open at the original provider</p>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+            <div class="hero-spark spark-one">✦</div>
+            <div class="hero-spark spark-two">✳</div>
+            <div class="hero-spark spark-three">+</div>
+            <div class="api-orb">
+              <span class="orb-label">SHIP</span>
+              <strong>faster</strong>
+              <span class="orb-code">200 OK</span>
+            </div>
+            <div class="float-card float-card-top"><span class="mini-icon">◈</span><span><b>1.7k+</b><small>ready to explore</small></span></div>
+            <div class="float-card float-card-bottom"><span class="mini-icon lime">✓</span><span><b>no lock-in</b><small>choose your stack</small></span></div>
+          </div>
+        </section>
+
+        <section class="metrics section-pad" aria-label="Catalog metrics">
+          <div class="metric"><strong id="metric-apis">—</strong><span>APIs indexed</span></div>
+          <div class="metric"><strong id="metric-categories">—</strong><span>use-case categories</span></div>
+          <div class="metric"><strong id="metric-no-auth">—</strong><span>no-auth options</span></div>
+          <div class="metric metric-highlight"><strong id="metric-https">—</strong><span>HTTPS-ready entries</span></div>
+        </section>
+
+        <section class="explore section-pad" id="explore">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">01 / DISCOVER</div>
+              <h2>A better starting point.</h2>
+            </div>
+            <p>One directory. The right constraints. A much shorter path from idea to working demo.</p>
+          </div>
+
+          <div class="explorer-shell">
+            <aside class="filter-panel" aria-label="Catalog filters">
+              <div class="filter-heading"><span>Refine your hunt</span><button class="text-button" id="clear-filters" type="button">Reset</button></div>
+              <label class="search-box" for="search-input">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="search-input" type="search" placeholder="Search APIs, use cases..." autocomplete="off" />
+                <kbd>/</kbd>
+              </label>
+              <div class="filter-group">
+                <label class="filter-label" for="category-filter">Category</label>
+                <select id="category-filter"><option value="All">All categories</option></select>
+              </div>
+              <div class="filter-group">
+                <span class="filter-label">Access</span>
+                <label class="check-row"><input id="no-auth-filter" type="checkbox" /><span class="fake-check"></span><span>No authentication</span></label>
+                <label class="check-row"><input id="https-filter" type="checkbox" /><span class="fake-check"></span><span>HTTPS available</span></label>
+                <label class="check-row"><input id="cors-filter" type="checkbox" /><span class="fake-check"></span><span>Browser-friendly CORS</span></label>
+              </div>
+              <div class="filter-group">
+                <label class="filter-label" for="sort-filter">Sort by</label>
+                <select id="sort-filter">
+                  <option value="relevance">Best match</option>
+                  <option value="name">Name A–Z</option>
+                  <option value="category">Category</option>
+                </select>
+              </div>
+              <div class="sidebar-note">
+                <span class="note-mark">✦</span>
+                <div><strong>Build a shortlist</strong><p>Tap the bookmark on any card. Your picks stay in this browser.</p></div>
+              </div>
+            </aside>
+
+            <div class="results-panel">
+              <div class="results-toolbar">
+                <div><strong id="results-count">Loading catalog…</strong><span id="results-context">Preparing the good stuff</span></div>
+                <button class="view-toggle active" type="button" aria-label="Grid view">▦</button>
+              </div>
+              <div class="category-strip" id="category-strip" aria-label="Popular categories"></div>
+              <div class="api-grid" id="api-grid" aria-live="polite"></div>
+              <div class="pagination" id="pagination"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="shortlist section-pad" id="saved">
+          <div class="section-heading compact-heading">
+            <div>
+              <div class="eyebrow">02 / YOUR SHORTLIST</div>
+              <h2>Keep the good options close.</h2>
+            </div>
+            <p id="shortlist-caption">Your saved APIs will appear here.</p>
+          </div>
+          <div class="shortlist-grid" id="shortlist-grid"></div>
+        </section>
+
+        <section class="provider-section section-pad" id="partners">
+          <div class="provider-card">
+            <div class="provider-content">
+              <div class="eyebrow eyebrow-light">03 / FOR API PROVIDERS</div>
+              <h2>Put your API in front of builders who are ready to ship.</h2>
+              <p>Turn a high-intent catalog visit into your next integration. Start with a clearly labeled partner feature, then graduate into comparison reports and developer campaigns.</p>
+              <div class="provider-actions">
+                <button class="button button-light" type="button" data-action="copy-pitch">Copy the sponsor pitch <span class="button-arrow">↗</span></button>
+                <button class="button button-outline-light" type="button" data-action="partner">See the playbook</button>
+              </div>
+              <p class="provider-microcopy">Transparent placements. Useful content. No dark patterns.</p>
+            </div>
+            <div class="provider-offer">
+              <div class="offer-tag">PARTNER SLOT / 01</div>
+              <div class="offer-line"><span>Audience</span><strong>builders in motion</strong></div>
+              <div class="offer-line"><span>Format</span><strong>featured + contextual</strong></div>
+              <div class="offer-line"><span>Next step</span><strong>your API, discovered</strong></div>
+              <div class="offer-price"><span>Make this slot yours</span><b>→</b></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="closing section-pad">
+          <div class="closing-mark">✳</div>
+          <div><div class="eyebrow">A SMALLER DISTANCE TO YES</div><h2>Go from “what could I use?” to “it works.”</h2></div>
+          <a class="button button-primary" href="#explore">Start exploring <span class="button-arrow">↗</span></a>
+        </section>
+      </main>
+
+      <footer class="footer section-pad">
+        <div class="brand footer-brand"><span class="brand-mark">✳</span><span class="brand-name">API<span>Scout</span></span></div>
+        <p>Built as a monetization-ready layer on top of the public-apis catalog.</p>
+        <div class="footer-links"><a href="https://github.com/public-apis/public-apis/blob/master/LICENSE" target="_blank" rel="noreferrer">MIT license</a><a href="https://github.com/public-apis/public-apis" target="_blank" rel="noreferrer">Source catalog ↗</a></div>
+      </footer>
+    </div>
+
+    <div class="modal-backdrop" id="details-modal" hidden>
+      <section class="modal details-modal" role="dialog" aria-modal="true" aria-labelledby="details-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+        <div id="details-content"></div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="match-modal" hidden>
+      <section class="modal match-modal" role="dialog" aria-modal="true" aria-labelledby="match-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+        <div class="eyebrow">FAST PATH / 60 SECONDS</div>
+        <h2 id="match-title">Tell us what you are building.</h2>
+        <p class="modal-intro">We will tune the catalog around your constraints and hand you a useful first shortlist.</p>
+        <form id="match-form">
+          <label class="modal-field"><span>What kind of data or capability?</span><select id="match-category"><option value="All">Anything / I am exploring</option></select></label>
+          <label class="modal-field"><span>How should users authenticate?</span><select id="match-auth"><option value="All">I am open to options</option><option value="No">No auth if possible</option><option value="apiKey">API key is fine</option><option value="OAuth">OAuth is fine</option></select></label>
+          <div class="modal-options"><label class="check-row"><input id="match-https" type="checkbox" checked /><span class="fake-check"></span><span>HTTPS only</span></label><label class="check-row"><input id="match-cors" type="checkbox" /><span class="fake-check"></span><span>Must work in the browser</span></label></div>
+          <button class="button button-primary button-wide" type="submit">Show my shortlist <span class="button-arrow">↗</span></button>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

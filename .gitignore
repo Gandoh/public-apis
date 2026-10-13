@@ -120,6 +120,9 @@ venv.bak/
 
 # mkdocs documentation
 /site
+# API Scout is a static product prototype, not a generated docs site.
+!/site/
+!/site/**
 
 # mypy
 .mypy_cache/
